@@ -10,7 +10,7 @@ class FrontendController
 {
     private $sliderManager;
 
-    public function construct(){
+    public function __construct(){
         $this->sliderManager = new SliderManager();
     }
 

@@ -32,9 +32,15 @@ class Routeur {
                 elseif ($_GET['action'] == 'addImage') {
                     $this->BackendController->addImage();
                 }
+                elseif ($_GET['action'] == 'addInscriptionFileChoice') {
+                    $this->BackendController->addInscriptionFileChoice();
+                }
+                elseif ($_GET['action'] == 'addInscriptionFile') {
+                    $this->BackendController->addInscriptionFile();
+                }
             }
             else {
-                echo'page en cours de construction';
+                $this->FrontendController->slider();
             }
         }
         catch (Exception $e) {

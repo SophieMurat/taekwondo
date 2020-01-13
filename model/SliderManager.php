@@ -19,6 +19,8 @@ class SliderManager extends Manager
      * Get all slides
      */
     public function getAllSlides(){
-
+        $req =$this->db->query('SELECT * FROM p5_images');
+        $result=$req->fetchAll();
+        return $result;
     }
 }
