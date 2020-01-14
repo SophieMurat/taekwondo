@@ -38,6 +38,9 @@ class Routeur {
                 elseif ($_GET['action'] == 'addInscriptionFile') {
                     $this->BackendController->addInscriptionFile();
                 }
+                if ($_GET['action'] == 'informations'){
+                    $this->FrontendController->informations();
+                }
             }
             else {
                 $this->FrontendController->slider();

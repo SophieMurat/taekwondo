@@ -26,11 +26,10 @@ class BackendController
         if (isset($_POST['upload'])){
             $image = $_FILES['image']['name'];
             $title= $_POST['title'];
-            $path ='public/img/'.$image;
-            var_dump($path);
-            var_dump($title);
+            $temp = explode(".", $image);
+            $imageName=round(microtime(true)). '.'. end($temp);
+            $path ='public/img/'.$imageName;
             $newSlide= $this->sliderManager->addOneImage($path,$title);
-            var_dump($newSlide);
             if($newSlide){
                 move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 $this->msg = 'L\'image a bien été ajoutée';

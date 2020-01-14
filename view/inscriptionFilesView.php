@@ -1,10 +1,11 @@
 <?php ob_start(); ?>
 
+<h1> page de chargement des fichiers</h1>
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-4 bg-dark rounded px-4">
             <h4 class="text-center text-light p-1">Envoyer une fiche d'inscription</h4>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="index.php?action=addInscriptionFile" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="fileName" class="form-control p-1" placeholder="Nom du fichier" required>
                 </div>
