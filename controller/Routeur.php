@@ -41,6 +41,9 @@ class Routeur {
                 if ($_GET['action'] == 'informations'){
                     $this->FrontendController->informations();
                 }
+                if ($_GET['action'] == 'sendInscriptionFile'){
+                    $this->FrontendController->sendInscriptionFile();
+                }
             }
             else {
                 $this->FrontendController->slider();
