@@ -78,4 +78,10 @@ class BackendController
         }
         require('view/inscriptionFilesView.php');
     }
+        /**
+     * Open the admin dashboard 
+     */
+    public function admin(){
+        require('view/adminView.php');
+    }
 }

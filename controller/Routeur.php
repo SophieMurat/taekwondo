@@ -38,11 +38,14 @@ class Routeur {
                 elseif ($_GET['action'] == 'addInscriptionFile') {
                     $this->BackendController->addInscriptionFile();
                 }
-                if ($_GET['action'] == 'informations'){
+                elseif ($_GET['action'] == 'informations'){
                     $this->FrontendController->informations();
                 }
-                if ($_GET['action'] == 'sendInscriptionFile'){
+                elseif ($_GET['action'] == 'sendInscriptionFile'){
                     $this->FrontendController->sendInscriptionFile();
+                }
+                elseif ($_GET['action'] == 'admin') {
+                    $this->BackendController->admin();
                 }
             }
             else {
