@@ -24,6 +24,38 @@
     </div>
 </div>
 
+<h1>Fichiers renvoyés par les adhérents</h1>
+
+<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 bg-dark rounded px-4">
+                <h4 class="text-center text-light p-1">Choix du type de fichier</h4>
+                <form action="index.php?action=addInscriptionFileChoice" method="post">
+                    <div class="form-group">
+                        <select name="category" class="form-control p-1" id="category">
+                        <?php while ($category=$categories->fetch()) {?>
+                            <option <?php if(isset($_POST['fileCategory'])){ /*if(!isset($_POST['category'])) $_POST ['category'] = 1*/;if($category['id'] == $_POST['category']) echo "selected='selected'"; }?>
+                            value="<?= $category['id']?>"><?= $category['category_name']?></option>
+                       <?php }?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="fileCategory" class="btn btn-warning btn-block" 
+                        value="Choisir cette catégorie">
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+ <?php 
+ if(isset($_POST['fileCategory'])){
+    foreach($fileCategory as $data):
+        echo $data['adherent_name']. ' ' .$data['adherent_firstname']. ', fichier envoyé le '.$data['upload_date'].' : <a href ="'.$data['adherent_fileUrl'].'">Télécharger</a></br>';
+    endforeach;
+ }
+ ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

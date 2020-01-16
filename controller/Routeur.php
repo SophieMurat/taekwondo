@@ -34,6 +34,7 @@ class Routeur {
                 }
                 elseif ($_GET['action'] == 'addInscriptionFileChoice') {
                     $this->BackendController->addInscriptionFileChoice();
+                        
                 }
                 elseif ($_GET['action'] == 'addInscriptionFile') {
                     $this->BackendController->addInscriptionFile();
@@ -46,6 +47,9 @@ class Routeur {
                 }
                 elseif ($_GET['action'] == 'admin') {
                     $this->BackendController->admin();
+                }
+                elseif ($_GET['action'] == 'getSignedFiles') {
+                    $this->BackendController->getsignedFiles();
                 }
             }
             else {

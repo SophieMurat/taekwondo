@@ -46,11 +46,15 @@ class BackendController
     public function addImageChoice(){
         require('view/addImageView.php');
     }
-      /**
-     * Choose to add an inscription File
+    /**
+     * Choose to add an inscription File and see the signed inscription files
      */
     public function addInscriptionFileChoice(){
-        require('view/inscriptionFilesView.php');
+        $categories=$this->filesManager->chooseCategory();
+        if(isset($_POST['fileCategory'])){
+            $fileCategory=$this->filesManager->signedFiles($_POST['category']);
+        }
+        require('view/inscriptionFilesView.php');  
     }
     /***
      * Add an inscription file from the admin part
@@ -76,9 +80,9 @@ class BackendController
                     $this->msg= 'Seuls les fichiers PDF sont autorisés.';
             }
         }
-        require('view/inscriptionFilesView.php');
+        $this->addInscriptionFileChoice();
     }
-        /**
+    /**
      * Open the admin dashboard 
      */
     public function admin(){

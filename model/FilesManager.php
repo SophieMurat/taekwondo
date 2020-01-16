@@ -37,4 +37,14 @@ class FilesManager extends Manager
         $req = $this->db->query('SELECT * FROM p5_files_category');
         return $req;
     }
+    /**
+     * Select the signed inscriptions files according to there categories.
+     */
+    public function signedFiles($categoryFile){
+        $req = $this->db->prepare('SELECT * FROM p5_adherent_files 
+        WHERE category_id=?'); 
+        $req->execute(array($categoryFile));
+        $signedFiles=$req->fetchAll();
+        return $signedFiles;
+    }
 }
