@@ -5,8 +5,6 @@ namespace taekwondo\controller;
 use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
 
-require_once('model/SliderManager.php');
-require_once('model/FilesManager.php');
 
 class BackendController
 {

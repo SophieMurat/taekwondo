@@ -5,8 +5,6 @@ namespace taekwondo\controller;
 use taekwondo\controller\FrontendController;
 use taekwondo\controller\BackendController;
 
-require_once('controller/FrontendController.php');
-require_once('controller/BackendController.php');
 
 class Routeur {
 

@@ -1,8 +1,10 @@
 <?php
 
+require_once('Autoloader.php');
+use taekwondo\Autoloader;
 use taekwondo\controller\Routeur;
 
-require ('controller/Routeur.php');
+Autoloader::register();
 
 $routeur = new Routeur();
 $routeur->routerRequete();

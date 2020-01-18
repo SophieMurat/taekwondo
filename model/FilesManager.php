@@ -2,8 +2,6 @@
 
 namespace taekwondo\model;
 
-require_once("model/Manager.php");
-
 class FilesManager extends Manager 
 {
     /**
