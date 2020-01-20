@@ -27,13 +27,28 @@ class BackendController
             $temp = explode(".", $image);
             $imageName=round(microtime(true)). '.'. end($temp);
             $path ='public/img/'.$imageName;
-            $newSlide= $this->sliderManager->addOneImage($path,$title);
-            if($newSlide){
-                move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
-                $this->msg = 'L\'image a bien été ajoutée';
+            $fileExtension= strrchr($imageName, ".");
+            $extensionAllowed= array('.png', '.jpg', '.jpeg');
+            $maxSize = 2000000;
+            $size = ($_FILES['image']['size']);
+            /*var_dump($size);
+            var_dump($maxSize);
+            var_dump($size<$maxSize);*/
+            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
+                $newSlide= $this->sliderManager->addOneImage($path,$title);
+                $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
+                if($movePath){
+                    $this->msg = 'L\'image a bien été ajoutée';
+                }
+                else{
+                    $this->msg = 'erreur lors de l\'ajout de l\'image';
+                }
+            }
+            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0){
+                $this->msg='L\'image ne doit pas faire plus de 2Mo';
             }
             else{
-                $this->msg = 'erreur lors de l\'ajout de l\'image';
+                $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
             }
         }
         require('view/addImageView.php');
@@ -65,16 +80,27 @@ class BackendController
             $fileExtension = strrchr($file_name, ".");
             $extensionAllowed = array('.pdf', '.PDF');
             $titleFile=$_POST['fileName'];
-            if(in_array($fileExtension,$extensionAllowed)){
-                $movePath= move_uploaded_file($temporaryPath,$finalPath);
-                if($movePath){
-                    $this->filesManager->addAdminFile($file_name,$finalPath,$titleFile);
+            $maxSize = 2000000;
+            $size = ($_FILES['pdf_file']['size']);
+            var_dump($size);
+            var_dump($maxSize);
+            var_dump($size<$maxSize);
+            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
+                $newFile= $this->filesManager->addAdminFile($file_name,$finalPath,$titleFile);
+                $path=move_uploaded_file($temporaryPath,$finalPath);
+                var_dump($path);
+                if($path){
+                    move_uploaded_file($temporaryPath,$finalPath);
                     $this->msg =' le fichier a bien été chargé';
                 }
                 else {
                     $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
                 }
-            }else {
+            }
+            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0){
+                $this->msg='Le fichier ne doit pas faire plus de 2Mo';
+            }
+            else {
                     $this->msg= 'Seuls les fichiers PDF sont autorisés.';
             }
         }

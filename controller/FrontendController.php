@@ -45,7 +45,9 @@ class FrontendController
             $extensionAllowed= array('.pdf', '.PDF');
             $adherentName=$_POST['name'];
             $adherentFirstname=$_POST['firstname'];
-            if(in_array($fileExtension,$extensionAllowed)){
+            $maxSize = 2000000;
+            $size = ($_FILES['image']['size']);
+            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
                 $movePath= move_uploaded_file($temporaryPath,$finalPath);
                 if($movePath){
                     $uploadedFile=$this->filesManager->uploadAdherentFile($adherentName,$adherentFirstname,
@@ -55,7 +57,11 @@ class FrontendController
                 else {
                     $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
                 }
-            }else {
+            }
+            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0){
+                $this->msg='Le fichier ne doit pas faire plus de 2Mo';
+            }
+            else {
                 $this->msg= 'Seuls les fichiers PDF sont autorisés.';
             }
             header('Location: index.php?action=informations');

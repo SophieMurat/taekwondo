@@ -34,8 +34,11 @@
                     <div class="form-group">
                         <select name="category" class="form-control p-1" id="category">
                         <?php while ($category=$categories->fetch()) {?>
-                            <option <?php if(isset($_POST['fileCategory'])){ /*if(!isset($_POST['category'])) $_POST ['category'] = 1*/;if($category['id'] == $_POST['category']) echo "selected='selected'"; }?>
-                            value="<?= $category['id']?>"><?= $category['category_name']?></option>
+                            <option <?php if(isset($_POST['fileCategory'])){
+                                if($category['id'] == $_POST['category']) echo "selected='selected'"; 
+                                }?>
+                            value="<?= $category['id']?>"><?= $category['category_name']?>
+                            </option>
                        <?php }?>
                         </select>
                     </div>

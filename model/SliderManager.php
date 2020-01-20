@@ -10,7 +10,6 @@ class SliderManager extends Manager
     public function addOneImage($path,$title){ 
         $req = $this->db->prepare('INSERT INTO p5_images(image_path, image_title) VALUES (?,?)');
         $newSlide=$req->execute(array($path,$title));
-        var_dump($newSlide);
         return $newSlide;
     }
     /**
