@@ -4,17 +4,21 @@ namespace taekwondo\controller;
 
 use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
+use taekwondo\model\AdminManager;
+use taekwondo\model\Admin;
 
 
 class BackendController
 {
     public $msg= "";
+    public $error=false;
     private $sliderManager;
     private $filesManager;
 
     public function __construct(){
         $this->sliderManager = new SliderManager();
         $this->filesManager = new FilesManager();
+        $this->adminsManager = new AdminManager();
     }
 
     /**
@@ -82,13 +86,9 @@ class BackendController
             $titleFile=$_POST['fileName'];
             $maxSize = 2000000;
             $size = ($_FILES['pdf_file']['size']);
-            var_dump($size);
-            var_dump($maxSize);
-            var_dump($size<$maxSize);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
                 $newFile= $this->filesManager->addAdminFile($file_name,$finalPath,$titleFile);
                 $path=move_uploaded_file($temporaryPath,$finalPath);
-                var_dump($path);
                 if($path){
                     move_uploaded_file($temporaryPath,$finalPath);
                     $this->msg =' le fichier a bien été chargé';
@@ -112,4 +112,86 @@ class BackendController
     public function admin(){
         require('view/adminView.php');
     }
+    /***
+     * Create an account
+    */
+    public function adminCreate(){
+        if(isset($_POST['submit'])){
+            if (!empty($_POST['name']) && !empty($_POST['login'])
+            && !empty($_POST['password']) && !empty($_POST['password_confirmation'])) {
+                $admin =$this->adminsManager->login($_POST['login']);
+                if($admin){
+                    $this->error=true;
+                    $this->msg='Login déjà utilisé!';              
+                }
+                if($_POST['password'] !== $_POST['password_confirmation']){
+                    $this->error=true;
+                    $this->msg='Les mots de passe ne sont pas identiques';
+                }
+                else{
+                    $hash_pwd=password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $newAdmin = new Admin(array(
+                        'admin_name'=>$_POST['name'],
+                        'password'=> $hash_pwd, 
+                        'login'=>$_POST['login']));
+                    $this->adminsManager->setAdmin($newAdmin);
+                    //header('Location: index.php?action=adminConnection');
+                }
+            }
+            else {
+                $this->error=true;
+                $this->msg='Veuillez remplir tous les champs';
+            }
+            require('view/createAdmin.php');
+        }
+        else{
+            require('view/createAdmin.php');
+        }
+    }
+    /**
+     * Sign in 
+     */
+    public function login(){
+        if(isset($_POST['submit'])){
+            if (!empty($_POST['login']) && !empty($_POST['password'])){
+                $admin =$this->adminsManager->login($_POST['login']);
+                var_dump($admin);
+                if(!$admin){
+                    $this->error=true;
+                    $this->msg ='Login inconnu seuls les administrateurs ont accès
+                    à cette page';
+                }
+                else{
+                    $hashChecked=password_verify($_POST['password'],$admin->password());
+                    if($hashChecked){
+                        header('Location: index.php?action=admin');
+                        $_SESSION['login']=$admin->login();
+                        $_SESSION['id']=$admin->id();
+                        $_SESSION['user_name']=$admin->admin_name();
+                    }
+                    else{
+                        $this->error=true;
+                        $this->msg ='Mauvais mot de passe';
+                    }
+                }              
+            }
+            else {
+                $this->error=true;
+                $this->msg='Veuillez remplir tous les champs';
+            }
+            require('view/loginView.php');
+        }
+        else{
+            require('view/loginView.php');
+        }
+    }
+        /**
+     * Disconnect
+     * Close the open Session
+     */
+    public function unplug(){
+        session_destroy();
+        header('Location: index.php?action=login');
+    }
+    
 }

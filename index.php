@@ -1,5 +1,5 @@
 <?php
-var_dump($_FILES);
+session_start();
 
 require_once('Autoloader.php');
 use taekwondo\Autoloader;

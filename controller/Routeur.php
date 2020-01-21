@@ -24,30 +24,47 @@ class Routeur {
                 if ($_GET['action'] == 'slider'){
                     $this->FrontendController->slider();
                 }
-                elseif ($_GET['action'] == 'addImageChoice') {
-                    $this->BackendController->addImageChoice();
-                }
-                elseif ($_GET['action'] == 'addImage') {
-                    $this->BackendController->addImage();
-                }
-                elseif ($_GET['action'] == 'addInscriptionFileChoice') {
-                    $this->BackendController->addInscriptionFileChoice();
-                        
-                }
-                elseif ($_GET['action'] == 'addInscriptionFile') {
-                    $this->BackendController->addInscriptionFile();
-                }
                 elseif ($_GET['action'] == 'informations'){
                     $this->FrontendController->informations();
                 }
                 elseif ($_GET['action'] == 'sendInscriptionFile'){
                     $this->FrontendController->sendInscriptionFile();
                 }
-                elseif ($_GET['action'] == 'admin') {
-                    $this->BackendController->admin();
+                elseif ($_GET['action'] == 'login') {
+                    $this->BackendController->login();
                 }
-                elseif ($_GET['action'] == 'getSignedFiles') {
-                    $this->BackendController->getsignedFiles();
+                elseif(!empty($_SESSION)){
+                    if ($_GET['action'] == 'addImageChoice') {
+                        $this->BackendController->addImageChoice();
+                    }
+                    elseif ($_GET['action'] == 'addImage') {
+                        $this->BackendController->addImage();
+                    }
+                    elseif ($_GET['action'] == 'addInscriptionFileChoice') {
+                        $this->BackendController->addInscriptionFileChoice();
+                            
+                    }
+                    elseif ($_GET['action'] == 'addInscriptionFile') {
+                        $this->BackendController->addInscriptionFile();
+                    }
+                    elseif ($_GET['action'] == 'admin') {
+                        $this->BackendController->admin();
+                    }
+                    elseif ($_GET['action'] == 'getSignedFiles') {
+                        $this->BackendController->getsignedFiles();
+                    }
+                    elseif ($_GET['action'] == 'adminCreate') {
+                        $this->BackendController->adminCreate();
+                    }
+                    elseif ($_GET['action'] == 'unlog') {
+                        $this->BackendController->unplug();
+                    }
+                    else{
+                        $this->FrontendController->error();
+                    }  
+                }
+                else{
+                    $this->FrontendController->error();
                 }
             }
             else {

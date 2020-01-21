@@ -68,5 +68,11 @@ class FrontendController
         }
         header('Location: index.php?action=informations');
     }
-
+    /**
+     * Load error page
+     */
+    public function error(){
+        $this->msg= 'Accès refusé!';
+        require('view/errorView.php');
+    }
 }

@@ -24,15 +24,24 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Accueil</a>
                 </li>
+                <?php
+                if(!empty($_SESSION)){ ?>
+                <li class="nav-item">
+                <a class="nav-link" href="index.php?action=unlog">Se déconnecter</a>
+                </li>
+                <?php } 
+                else {
+                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Evènements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >Histoire</a>
+                    <a class="nav-link" href="#">Histoire</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action=informations">Informations</a>
                 </li>
+                <?php }?>
                 </ul>
             </div>
         </div>
