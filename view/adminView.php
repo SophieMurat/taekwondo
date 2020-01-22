@@ -5,7 +5,7 @@
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <a href="index.php?action=addImageChoice" style="text-decoration:none"><div class="col text-xs font-weight-bold">Gestion des images pour le slider</div></a>
+                        <a href="index.php?action=addImage" style="text-decoration:none"><div class="col text-xs font-weight-bold">Gestion des images pour le slider</div></a>
                     </div>
                 </div>
             </div>

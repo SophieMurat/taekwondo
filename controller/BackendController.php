@@ -22,9 +22,10 @@ class BackendController
     }
 
     /**
-     * add a new image from the admin par
+     * add a new image from the admin part and show action on the list of slides
      */
     public function addImage(){
+        $slides=$this->sliderManager->getAllSlides();
         if (isset($_POST['upload'])){
             $image = $_FILES['image']['name'];
             $title= $_POST['title'];
@@ -35,14 +36,11 @@ class BackendController
             $extensionAllowed= array('.png', '.jpg', '.jpeg');
             $maxSize = 2000000;
             $size = ($_FILES['image']['size']);
-            /*var_dump($size);
-            var_dump($maxSize);
-            var_dump($size<$maxSize);*/
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
                 $newSlide= $this->sliderManager->addOneImage($path,$title);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath){
-                    $this->msg = 'L\'image a bien été ajoutée';
+                    header('Location:index.php?action=addImage');
                 }
                 else{
                     $this->msg = 'erreur lors de l\'ajout de l\'image';
@@ -58,10 +56,44 @@ class BackendController
         require('view/addImageView.php');
     }
     /**
-     * Choose to add an Image
+     * modify a slide
      */
-    public function addImageChoice(){
-        require('view/addImageView.php');
+    public function updateImage(){
+        if (isset($_POST['upload'])){
+            $image = $_FILES['image']['name'];
+            $title= $_POST['title'];
+            $temp = explode(".", $image);
+            $imageName=round(microtime(true)). '.'. end($temp);
+            $path ='public/img/'.$imageName;
+            $fileExtension= strrchr($imageName, ".");
+            $extensionAllowed= array('.png', '.jpg', '.jpeg');
+            $maxSize = 2000000;
+            $size = ($_FILES['image']['size']);
+            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
+                $newSlide= $this->sliderManager->modifySlide($path,$title,$_GET['imageId']);
+                $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
+                if($movePath){
+                    header('Location:index.php?action=addImage');
+                }
+                else{
+                    $this->msg = 'erreur lors de l\'ajout de l\'image';
+                }
+            }
+            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0){
+                $this->msg='L\'image ne doit pas faire plus de 2Mo';
+            }
+            else{
+                $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
+            }
+        }
+        require('view/modifyImageView.php');
+    }
+    /**
+     * Delete a slide
+     */
+    public function deleteSlide(){
+        $deletedSlide=$this->sliderManager->deleteSlide($_GET['imageId']);
+        header('Location:index.php?action=addImage');
     }
     /**
      * Choose to add an inscription File and see the signed inscription files
@@ -112,8 +144,8 @@ class BackendController
     public function admin(){
         require('view/adminView.php');
     }
-    /***
-     * Create an account
+    /**
+    * Create an account
     */
     public function adminCreate(){
         if(isset($_POST['submit'])){
@@ -205,19 +237,18 @@ class BackendController
         require('view/createCategoryView.php');
     }
     /**
-     * Button to confirm cancel
-     */
-    public function cancelConfirm(){
-        //$categories=$this->filesManager->chooseCategory(); 
-        require('view/createCategoryView.php');
-    }
-    /**
      * Delete a category
      */
     public function deleteCategory(){
         $categories=$this->filesManager->chooseCategory();
         $deleted=$this->filesManager->deleteCategory($_GET['categoryId']);
         header('location:index.php?action=createCategory');
-        //require('view/createCategoryView.php');
+    }
+    /**
+     * Open the modify ImageView with its form
+     */
+    public function modifyImage(){
+        $imageModify=$this->sliderManager->getOneSlide($_GET['imageId']);
+        require('view/modifyImageView.php');
     }
 }

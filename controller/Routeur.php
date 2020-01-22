@@ -34,15 +34,17 @@ class Routeur {
                     $this->BackendController->login();
                 }
                 elseif(!empty($_SESSION)){
-                    if ($_GET['action'] == 'addImageChoice') {
-                        $this->BackendController->addImageChoice();
-                    }
-                    elseif ($_GET['action'] == 'addImage') {
+                    if ($_GET['action'] == 'addImage') {
                         $this->BackendController->addImage();
                     }
+                    elseif ($_GET['action'] == 'updateImage'){
+                        $this->BackendController->updateImage();
+                    }
                     elseif ($_GET['action'] == 'addInscriptionFileChoice') {
-                        $this->BackendController->addInscriptionFileChoice();
-                            
+                        $this->BackendController->addInscriptionFileChoice();                         
+                    }
+                    elseif ($_GET['action'] == 'deleteImage') {
+                        $this->BackendController->deleteSlide();                         
                     }
                     elseif ($_GET['action'] == 'addInscriptionFile') {
                         $this->BackendController->addInscriptionFile();
@@ -67,6 +69,9 @@ class Routeur {
                     }
                     elseif ($_GET['action'] == 'cancelConfirm') {
                         $this->BackendController->cancelConfirm();
+                    }
+                    elseif ($_GET['action'] == 'modifyImage') {
+                        $this->BackendController->modifyImage();
                     }
                     else{
                         $this->FrontendController->error();

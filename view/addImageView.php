@@ -22,6 +22,27 @@
   </div>
 </div>
 
+<!-- Affichage de toutes les images pour pouvoir les modifier ou les supprimer-->
+<div class="container">
+
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Actions sur les images du slider</h1>
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center text-lg-left">
+    <?php 
+    foreach($slides as $slide)
+    {
+    ?>
+    <div class="col-lg-3 col-md-4 col-6">
+            <img class="img-fluid img-thumbnail" src="<?= $slide['image_path'];?>" alt="Taekwondo">
+            <a href="index.php?action=modifyImage&amp;imageId=<?=$slide['id']?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+            <a href="index.php?action=deleteImage&amp;imageId=<?=$slide['id']?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+    </div>
+    <?php }?>
+  </div>
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
