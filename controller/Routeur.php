@@ -59,6 +59,15 @@ class Routeur {
                     elseif ($_GET['action'] == 'unlog') {
                         $this->BackendController->unplug();
                     }
+                    elseif ($_GET['action'] == 'createCategory') {
+                        $this->BackendController->createCategory();
+                    }
+                    elseif ($_GET['action'] == 'deleteCategory') {
+                        $this->BackendController->deleteCategory();
+                    }
+                    elseif ($_GET['action'] == 'cancelConfirm') {
+                        $this->BackendController->cancelConfirm();
+                    }
                     else{
                         $this->FrontendController->error();
                     }  

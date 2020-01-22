@@ -45,4 +45,19 @@ class FilesManager extends Manager
         $signedFiles=$req->fetchAll();
         return $signedFiles;
     }
+    /**
+     * Add a new Category
+     */
+    public function addCategory($category){
+        $req =$this->db->prepare('INSERT INTO p5_files_category(category_name)
+        VALUES(?)');
+        $req->execute(array($category));
+    }
+    /**
+     * Delete a category
+    */
+    public function deleteCategory($categoryId){
+        $req =$this->db->prepare('DELETE FROM p5_files_category WHERE id=?');
+        $req->execute(array($categoryId));
+    }
 }

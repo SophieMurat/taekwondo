@@ -27,10 +27,12 @@
                 <?php
                 if(!empty($_SESSION)){ ?>
                 <li class="nav-item">
+                <a class="nav-link" href="index.php?action=admin">Accueil Admin</a>
+                </li>
+                <li class="nav-item">
                 <a class="nav-link" href="index.php?action=unlog">Se déconnecter</a>
                 </li>
                 <?php } 
-                else {
                 ?>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Evènements</a>
@@ -41,7 +43,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action=informations">Informations</a>
                 </li>
-                <?php }?>
                 </ul>
             </div>
         </div>

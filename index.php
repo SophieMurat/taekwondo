@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_POST);
 
 require_once('Autoloader.php');
 use taekwondo\Autoloader;

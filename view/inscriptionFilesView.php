@@ -58,6 +58,7 @@
     endforeach;
  }
  ?>
+ <a href="index.php?action=createCategory" style="text-decoration:none"><button type="button" class="btn btn-success">Gestion des catégories</button></a>
 
 <?php $content = ob_get_clean(); ?>
 

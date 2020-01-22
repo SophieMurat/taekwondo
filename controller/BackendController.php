@@ -185,7 +185,7 @@ class BackendController
             require('view/loginView.php');
         }
     }
-        /**
+    /**
      * Disconnect
      * Close the open Session
      */
@@ -193,5 +193,31 @@ class BackendController
         session_destroy();
         header('Location: index.php?action=login');
     }
-    
+    /**
+     * Add a new category
+     */
+    public function createCategory(){
+        $categories=$this->filesManager->chooseCategory();
+        if(isset($_POST['create'])){
+            $newCategory=$this->filesManager->addCategory($_POST['category']);
+            header('location:index.php?action=createCategory');
+        }
+        require('view/createCategoryView.php');
+    }
+    /**
+     * Button to confirm cancel
+     */
+    public function cancelConfirm(){
+        //$categories=$this->filesManager->chooseCategory(); 
+        require('view/createCategoryView.php');
+    }
+    /**
+     * Delete a category
+     */
+    public function deleteCategory(){
+        $categories=$this->filesManager->chooseCategory();
+        $deleted=$this->filesManager->deleteCategory($_GET['categoryId']);
+        header('location:index.php?action=createCategory');
+        //require('view/createCategoryView.php');
+    }
 }
