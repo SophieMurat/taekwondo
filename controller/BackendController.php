@@ -156,7 +156,7 @@ class BackendController
                     $this->error=true;
                     $this->msg='Login déjà utilisé!';              
                 }
-                if($_POST['password'] !== $_POST['password_confirmation']){
+                elseif($_POST['password'] !== $_POST['password_confirmation']){
                     $this->error=true;
                     $this->msg='Les mots de passe ne sont pas identiques';
                 }
@@ -167,7 +167,8 @@ class BackendController
                         'password'=> $hash_pwd, 
                         'login'=>$_POST['login']));
                     $this->adminsManager->setAdmin($newAdmin);
-                    //header('Location: index.php?action=adminConnection');
+                    $this->error=true;
+                    $this->msg='Le nouveau compte a bien été ajouté!';
                 }
             }
             else {
