@@ -64,9 +64,9 @@ class FrontendController
             else {
                 $this->msg= 'Seuls les fichiers PDF sont autorisés.';
             }
-            header('Location: index.php?action=informations');
+            header('Location:/p5/taekwondo/informations');
         }
-        header('Location: index.php?action=informations');
+        header('Location:/p5/taekwondo/informations');
     }
     /**
      * Load error page

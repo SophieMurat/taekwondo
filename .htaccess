@@ -1,4 +1,7 @@
 RewriteEngine On
 #RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^home index.php?action=admin
+#prevent to change the path to open the files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z]*)/?([a-zA-Z0-9]*)?/?$ index.php?action=$1&id=$2
+
+

@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Ajouter une nouvelle catégorie</h4>
-    <form action="index.php?action=createCategory" method="post">
+    <form action="createCategory" method="post">
       <div class="form-group">
         <input type="text" name="category" class="form-control p-1" placeholder="Ecrire la nouvelle catégorie" required>
       </div>
@@ -23,7 +23,7 @@
         <?php foreach($categories as $category):?>
             <div>
                 <p class="text-light text-center"><?= $category['category_name']?></p>
-                    <a href="index.php?action=deleteCategory&amp;categoryId=<?=$category['id'] ?>">
+                    <a href="deleteCategory/<?=$category['id'] ?>">
                       <button class="btn btn-warning">Supprimer</button>
                     </a>
             </div>

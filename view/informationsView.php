@@ -1,3 +1,5 @@
+
+
 <?php ob_start(); ?>
 
 <h1>Fiches d'inscription</h1>
@@ -13,7 +15,7 @@ while($data = $inscriptionFiles->fetch()){?>
         <div class="row justify-content-center">
             <div class="col-lg-4 bg-dark rounded px-4">
             <h4 class="text-center text-light p-1">Renvoyer la fiche d'inscription signée</h4>
-                <form action="index.php?action=sendInscriptionFile" method="post" enctype="multipart/form-data">
+                <form action="sendInscriptionFile" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control p-1" placeholder="Nom de l'inscrit" required>
                     </div>

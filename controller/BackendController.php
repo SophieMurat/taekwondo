@@ -40,7 +40,7 @@ class BackendController
                 $newSlide= $this->sliderManager->addOneImage($path,$title);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath){
-                    header('Location:index.php?action=addImage');
+                    header('Location:/p5/taekwondo/addImage');
                 }
                 else{
                     $this->msg = 'erreur lors de l\'ajout de l\'image';
@@ -70,19 +70,21 @@ class BackendController
             $maxSize = 2000000;
             $size = ($_FILES['image']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
-                $newSlide= $this->sliderManager->modifySlide($path,$title,$_GET['imageId']);
+                $newSlide= $this->sliderManager->modifySlide($path,$title,$_GET['id']);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath){
-                    header('Location:index.php?action=addImage');
+                    header('Location:/p5/taekwondo/addImage');
                 }
                 else{
                     $this->msg = 'erreur lors de l\'ajout de l\'image';
                 }
             }
             elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0){
+                $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
                 $this->msg='L\'image ne doit pas faire plus de 2Mo';
             }
             else{
+                $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
                 $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
             }
         }
@@ -92,8 +94,8 @@ class BackendController
      * Delete a slide
      */
     public function deleteSlide(){
-        $deletedSlide=$this->sliderManager->deleteSlide($_GET['imageId']);
-        header('Location:index.php?action=addImage');
+        $deletedSlide=$this->sliderManager->deleteSlide($_GET['id']);
+        header('Location:/p5/taekwondo/addImage');
     }
     /**
      * Choose to add an inscription File and see the signed inscription files
@@ -197,7 +199,7 @@ class BackendController
                 else{
                     $hashChecked=password_verify($_POST['password'],$admin->password());
                     if($hashChecked){
-                        header('Location: index.php?action=admin');
+                        header('Location:/p5/taekwondo/admin');
                         $_SESSION['login']=$admin->login();
                         $_SESSION['id']=$admin->id();
                         $_SESSION['user_name']=$admin->admin_name();
@@ -224,7 +226,7 @@ class BackendController
      */
     public function unplug(){
         session_destroy();
-        header('Location: index.php?action=login');
+        header('Location:/p5/taekwondo/login');
     }
     /**
      * Add a new category
@@ -233,7 +235,7 @@ class BackendController
         $categories=$this->filesManager->chooseCategory();
         if(isset($_POST['create'])){
             $newCategory=$this->filesManager->addCategory($_POST['category']);
-            header('location:index.php?action=createCategory');
+            header('Location:/p5/taekwondo/createCategory');
         }
         require('view/createCategoryView.php');
     }
@@ -242,14 +244,14 @@ class BackendController
      */
     public function deleteCategory(){
         $categories=$this->filesManager->chooseCategory();
-        $deleted=$this->filesManager->deleteCategory($_GET['categoryId']);
-        header('location:index.php?action=createCategory');
+        $deleted=$this->filesManager->deleteCategory($_GET['id']);
+        header('Location:/p5/taekwondo/createCategory');
     }
     /**
      * Open the modify ImageView with its form
      */
     public function modifyImage(){
-        $imageModify=$this->sliderManager->getOneSlide($_GET['imageId']);
+        $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
         require('view/modifyImageView.php');
     }
 }

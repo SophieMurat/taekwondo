@@ -1,3 +1,6 @@
+
+
+
 <?php ob_start(); ?>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

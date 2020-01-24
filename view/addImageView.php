@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Choisissez une image à ajouter</h4>
-    <form action="index.php?action=addImage" method="post" enctype="multipart/form-data">
+    <form action="addImage" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <input type="text" name="title" class="form-control p-1" placeholder="Veuillez indiquer le titre de l'image" required>
       </div>
@@ -36,8 +36,8 @@
     ?>
     <div class="col-lg-3 col-md-4 col-6">
             <img class="img-fluid img-thumbnail" src="<?= $slide['image_path'];?>" alt="Taekwondo">
-            <a href="index.php?action=modifyImage&amp;imageId=<?=$slide['id']?>"><button type="button" class="btn btn-primary">Modifier</button></a>
-            <a href="index.php?action=deleteImage&amp;imageId=<?=$slide['id']?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+            <a href="modifyImage/<?=$slide['id']?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+            <a href="deleteImage/<?=$slide['id']?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
     </div>
     <?php }?>
   </div>

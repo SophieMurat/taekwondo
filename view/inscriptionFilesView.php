@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-4 bg-dark rounded px-4">
             <h4 class="text-center text-light p-1">Envoyer une fiche d'inscription</h4>
-            <form action="index.php?action=addInscriptionFile" method="post" enctype="multipart/form-data">
+            <form action="addInscriptionFile" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="fileName" class="form-control p-1" placeholder="Nom du fichier" required>
                 </div>
@@ -30,7 +30,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 bg-dark rounded px-4">
                 <h4 class="text-center text-light p-1">Choix du type de fichier</h4>
-                <form action="index.php?action=addInscriptionFileChoice" method="post">
+                <form action="addInscriptionFileChoice" method="post">
                     <div class="form-group">
                         <select name="category" class="form-control p-1" id="category">
                         <?php while ($category=$categories->fetch()) {?>
@@ -58,7 +58,7 @@
     endforeach;
  }
  ?>
- <a href="index.php?action=createCategory" style="text-decoration:none"><button type="button" class="btn btn-success">Gestion des catégories</button></a>
+ <a href="createCategory" style="text-decoration:none"><button type="button" class="btn btn-success">Gestion des catégories</button></a>
 
 <?php $content = ob_get_clean(); ?>
 
