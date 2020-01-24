@@ -3,6 +3,7 @@
 
 <head>
    <meta charset="utf-8">
+   <base href="/p5/taekwondo/">
    <link rel="stylesheet" type="text/css" href="public/css/style.css"> 
    <title>Taekwendo</title>
    <!--Bootsrap-->
