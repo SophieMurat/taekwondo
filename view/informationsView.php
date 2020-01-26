@@ -23,6 +23,13 @@ while($data = $inscriptionFiles->fetch()){?>
                         <input type="text" name="firstname" class="form-control p-1" placeholder="Prénom de l'inscrit" required>
                     </div>
                     <div class="form-group">
+                        <input type="text" name="zipcode" class="form-control" placeholder="Code postal" id="zipcode">
+                        <div style="display: none; color: #f55;" id="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="city" id="city"></select>
+                    </div>
+                    <div class="form-group">
                         <label class="text-center text-light p-1">Choisissez le type de fichier à renvoyer :
                             <select name="category" class="form-control p-1" id="category">
                                 <?php while ($category=$categories->fetch()) {?>

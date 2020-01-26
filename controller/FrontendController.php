@@ -46,7 +46,7 @@ class FrontendController
             $adherentName=$_POST['name'];
             $adherentFirstname=$_POST['firstname'];
             $maxSize = 2000000;
-            $size = ($_FILES['image']['size']);
+            $size = ($_FILES['adherent_file']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0){
                 $movePath= move_uploaded_file($temporaryPath,$finalPath);
                 if($movePath){
