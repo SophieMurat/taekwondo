@@ -12,7 +12,7 @@
    <script src="https://cdn.tiny.cloud/1/dn4trgysuntk7bas8bgdxa3q66so7v8wygzx78ylg1fpc5iu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
-    selector: '#article_content'
+    selector: '#event_content'
   });
   </script>
 </head>
