@@ -52,9 +52,29 @@
         </div>
 
  <?php 
- if(isset($_POST['fileCategory'])):
-    foreach($fileCategory as $data):
-        echo $data['adherent_name']. ' ' .$data['adherent_firstname']. ', fichier envoyé le '.$data['upload_date'].' : <a href ="'.$data['adherent_fileUrl'].'">Télécharger</a></br>';
+ if(isset($_POST['fileCategory'])):?>
+    <div id="comment_table" class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Commune de résidence</th>
+            <th>Date d'envoi</th>
+            <th>Télécharger</th>
+        </tr>
+        </thead>
+        <tbody>
+    <?php foreach($fileCategory as $data):?>
+        <tr>
+            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_name']) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_firstname']) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_city']) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data['sentDate']) ?></td>
+            <td class="non_responsive"><a href ="<?php echo $data['adherent_fileUrl'] ?>">Télécharger</a></td>
+            
+        </tr>
+    <?php
     endforeach;
 endif;
  ?>

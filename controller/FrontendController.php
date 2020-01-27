@@ -50,7 +50,7 @@ class FrontendController
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
                 $movePath= move_uploaded_file($temporaryPath,$finalPath);
                 if($movePath):
-                    $uploadedFile=$this->filesManager->uploadAdherentFile($adherentName,$adherentFirstname,
+                    $uploadedFile=$this->filesManager->uploadAdherentFile($adherentName,$adherentFirstname,$_POST['city'],
                     $fileName,$finalPath,$_POST['category']);
                     $this->msg =' le fichier a bien été chargé';;
                 else :

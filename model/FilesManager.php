@@ -21,11 +21,11 @@ class FilesManager extends Manager
     /**
      * insert a new signed adherent file
      */
-    public function uploadAdherentFile($adherentName,$adherentFirstname,$fileName,$finalPath,$categorie){
+    public function uploadAdherentFile($adherentName,$adherentFirstname,$adherentCity,$fileName,$finalPath,$categorie){
         $req = $this->db->prepare('INSERT INTO p5_adherent_files(adherent_name,
-        adherent_firstname,adherent_fileName,adherent_fileUrl,upload_date,category_id) 
-                    VALUES (?,?,?,?,NOW(),?)');
-        $req->execute(array($adherentName,$adherentFirstname,$fileName,$finalPath,$categorie));
+        adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl,upload_date,category_id) 
+                    VALUES (?,?,?,?,?,NOW(),?)');
+        $req->execute(array($adherentName,$adherentFirstname,$adherentCity,$fileName,$finalPath,$categorie));
 
     }
     /**
@@ -39,8 +39,12 @@ class FilesManager extends Manager
      * Select the signed inscriptions files according to there categories.
      */
     public function signedFiles($categoryFile){
-        $req = $this->db->prepare('SELECT * FROM p5_adherent_files 
-        WHERE category_id=?'); 
+        $req = $this->db->prepare("SELECT adherent_name,
+        adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl, 
+        DATE_FORMAT(upload_date,GET_FORMAT(DATE, 'EUR')) 
+        AS sentDate ,category_id 
+        FROM p5_adherent_files 
+        WHERE category_id=?"); 
         $req->execute(array($categoryFile));
         $signedFiles=$req->fetchAll();
         return $signedFiles;
