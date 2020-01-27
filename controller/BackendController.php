@@ -238,4 +238,16 @@ class BackendController
         $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
         require('view/modifyImageView.php');
     }
+    /**
+     * Open the event management part
+     */
+    public function eventManagement(){
+        require('view/eventManagementView.php');
+    }
+    /**
+     * Open the create event View
+     */
+    public function createEvent(){
+        require('view/addEventView.php');
+    }
 }

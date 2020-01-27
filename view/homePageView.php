@@ -49,6 +49,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<a class="btn btn-info" href="events" role="button">Voir les évènements</a>
 
 <?php $content = ob_get_clean(); ?>
 

@@ -72,4 +72,7 @@ class FrontendController
         $this->msg= 'Accès refusé!';
         require('view/errorView.php');
     }
+    public function events(){
+        require('view/eventsView.php');
+    }
 }

@@ -23,7 +23,7 @@
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <a href="" style="text-decoration:none"><div class="col mr-2 text-xs font-weight-bold mb-1">Gestion des évènements à venir</div></a>
+                        <a href="eventManagement" style="text-decoration:none"><div class="col mr-2 text-xs font-weight-bold mb-1">Gestion des évènements à venir</div></a>
                     </div>
                 </div>
             </div>

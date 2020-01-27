@@ -27,6 +27,8 @@ class Routeur {
                     $this->FrontendController->informations();
                 elseif ($_GET['action'] == 'sendInscriptionFile'):
                     $this->FrontendController->sendInscriptionFile();
+                elseif ($_GET['action'] == 'events'):
+                    $this->FrontendController->events();
                 elseif ($_GET['action'] == 'login'):
                     $this->BackendController->login();
                 elseif(!empty($_SESSION)):
@@ -56,6 +58,10 @@ class Routeur {
                         $this->BackendController->cancelConfirm();
                     elseif ($_GET['action'] == 'modifyImage'):
                         $this->BackendController->modifyImage();
+                    elseif ($_GET['action'] == 'eventManagement'):
+                        $this->BackendController->eventManagement();
+                    elseif ($_GET['action'] == 'createEvent'):
+                        $this->BackendController->createEvent();
                     else:
                         $this->FrontendController->error();
                     endif;
