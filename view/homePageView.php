@@ -8,24 +8,26 @@
   <ol class="carousel-indicators">
   <?php 
   $count =0;
-  foreach ($slides as $row) {
+  foreach ($slides as $row):
     $actives ='';
-    if($count == 0){
+    if($count == 0):
       $actives = 'active';
-    }
+    endif;
   ?>
     <li data-target="#myCarousel" data-slide-to="<?= $count;?>" class="<?= $actives;?>"></li>
-    <?php $count++; }?>
+    <?php $count++; 
+    endforeach;
+    ?>
   </ol>
 <!-- Wrapper for slides -->
 <div class="carousel-inner">
     <?php 
     $count =0;
-    foreach ($slides as $row) {
+    foreach ($slides as $row):
       $actives ='';
-      if($count == 0){
+      if($count == 0):
         $actives = 'active';
-      }
+      endif;
     ?>
     <div class="carousel-item <?= $actives ?>">
       <img class="d-block w-100" src="<?= $row['image_path']; ?>" alt="taekwondo">
@@ -33,7 +35,9 @@
         <h4><?= $row['image_title'];?></h4>
       </div>
     </div>
-    <?php $count++; }?>
+    <?php $count++; 
+    endforeach;
+    ?>
   </div>
 
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

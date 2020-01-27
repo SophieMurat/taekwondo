@@ -14,10 +14,10 @@ class Autoloader {
      * @param $class string class's name to autoload
      */
     static function autoload($class){
-        if(strpos($class,__NAMESPACE__.'\\')===0){// strpos cherche la position de la première occurence dans une chaîne   
+        if(strpos($class,__NAMESPACE__.'\\')===0):// strpos cherche la position de la première occurence dans une chaîne   
         $class= str_replace(__NAMESPACE__.'\\','',$class);
         $class= str_replace('\\','/',$class);
         require __DIR__.'/' . $class . '.php';
-    }
+        endif;
     }
 }

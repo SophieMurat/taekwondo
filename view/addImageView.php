@@ -31,15 +31,13 @@
 
   <div class="row text-center text-lg-left">
     <?php 
-    foreach($slides as $slide)
-    {
-    ?>
+    foreach($slides as $slide):?>
     <div class="col-lg-3 col-md-4 col-6">
             <img class="img-fluid img-thumbnail" src="<?= $slide['image_path'];?>" alt="Taekwondo">
             <a href="modifyImage/<?=$slide['id']?>"><button type="button" class="btn btn-primary">Modifier</button></a>
             <a href="deleteImage/<?=$slide['id']?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
     </div>
-    <?php }?>
+    <?php endforeach?>
   </div>
 </div>
 

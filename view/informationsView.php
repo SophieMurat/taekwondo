@@ -5,10 +5,10 @@
 <h1>Fiches d'inscription</h1>
 
 <?php
-while($data = $inscriptionFiles->fetch()){?>
+while($data = $inscriptionFiles->fetch()):?>
      <p> <?=$data['title_file'];?> : <a href ="<?=$data['file_url'];?>">Télécharger</a></p>
  <?php 
- }
+ endwhile;
  $inscriptionFiles->closeCursor();
 ?>
 <div class="container-fluid">
@@ -32,10 +32,10 @@ while($data = $inscriptionFiles->fetch()){?>
                     <div class="form-group">
                         <label class="text-center text-light p-1">Choisissez le type de fichier à renvoyer :
                             <select name="category" class="form-control p-1" id="category">
-                                <?php while ($category=$categories->fetch()) {?>
+                                <?php while ($category=$categories->fetch()):?>
                                 <option
                                 value="<?= $category['id']?>"><?= $category['category_name']?></option>
-                            <?php } ?>
+                                <?php endwhile; ?>
                             </select>
                         </label>
                     </div>

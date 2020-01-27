@@ -26,14 +26,14 @@
                     <a class="nav-link" href="index.php">Accueil</a>
                 </li>
                 <?php
-                if(!empty($_SESSION)){ ?>
+                if(!empty($_SESSION)): ?>
                 <li class="nav-item">
                 <a class="nav-link" href="admin">Accueil Admin</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="unlog">Se déconnecter</a>
                 </li>
-                <?php } 
+                <?php endif;
                 ?>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Evènements</a>

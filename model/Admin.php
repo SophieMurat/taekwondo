@@ -28,26 +28,25 @@ class Admin extends Entity
     public function setId($id)
     {
         $id = (int)$id;
-        if($id>0)
-        {
+        if($id>0):
             $this->id =$id;
-        }
+        endif;
     }
     public function setAdmin_name($adminName)
     {
-        if(is_string($adminName)){
+        if(is_string($adminName)):
             $this->admin_name=$adminName;
-        }
+        endif;
     }
     public function setLogin($login)
     {
-        if(is_string($login)){
+        if(is_string($login)):
             $this->login=$login;
-        }
+        endif;
     }
     public function setPassword($password){
-        if(is_string($password)){
+        if(is_string($password)):
             $this->password=$password;
-        }
+        endif;
     }
 }

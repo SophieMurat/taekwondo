@@ -33,13 +33,13 @@
                 <form action="addInscriptionFileChoice" method="post">
                     <div class="form-group">
                         <select name="category" class="form-control p-1" id="category">
-                        <?php while ($category=$categories->fetch()) {?>
-                            <option <?php if(isset($_POST['fileCategory'])){
+                        <?php while ($category=$categories->fetch()):?>
+                            <option <?php if(isset($_POST['fileCategory'])):
                                 if($category['id'] == $_POST['category']) echo "selected='selected'"; 
-                                }?>
+                            endif;?>
                             value="<?= $category['id']?>"><?= $category['category_name']?>
                             </option>
-                       <?php }?>
+                        <?php endwhile;?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -52,11 +52,11 @@
         </div>
 
  <?php 
- if(isset($_POST['fileCategory'])){
+ if(isset($_POST['fileCategory'])):
     foreach($fileCategory as $data):
         echo $data['adherent_name']. ' ' .$data['adherent_firstname']. ', fichier envoyé le '.$data['upload_date'].' : <a href ="'.$data['adherent_fileUrl'].'">Télécharger</a></br>';
     endforeach;
- }
+endif;
  ?>
  <a href="createCategory" style="text-decoration:none"><button type="button" class="btn btn-success">Gestion des catégories</button></a>
 

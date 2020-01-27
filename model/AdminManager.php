@@ -22,12 +22,10 @@ class AdminManager extends Manager
         $req->execute(array($login));
         $adminData=$req->fetch(\PDO::FETCH_ASSOC);
         
-        if (!$adminData){
+        if (!$adminData):
             return false;
-        }
-        else
-        {
+        else:
             return new Admin($adminData);
-        }
+        endif;
     }
 }
