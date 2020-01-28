@@ -9,7 +9,7 @@
    <link rel="stylesheet" type="text/css" href="public/css/style.css">
    <!--Bootsrap-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <script src="https://cdn.tiny.cloud/1/dn4trgysuntk7bas8bgdxa3q66so7v8wygzx78ylg1fpc5iu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+   <script type="text/javascript" src="https://cdn.tiny.cloud/1/dn4trgysuntk7bas8bgdxa3q66so7v8wygzx78ylg1fpc5iu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
     selector: '#event_content'

@@ -6,6 +6,8 @@ use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
 use taekwondo\model\AdminManager;
 use taekwondo\model\Admin;
+use taekwondo\model\EventsManager;
+use taekwondo\model\Event;
 
 
 class BackendController
@@ -14,11 +16,13 @@ class BackendController
     public $error=false;
     private $sliderManager;
     private $filesManager;
+    private $eventsManager;
 
     public function __construct(){
         $this->sliderManager = new SliderManager();
         $this->filesManager = new FilesManager();
         $this->adminsManager = new AdminManager();
+        $this->eventsManager = new EventsManager();
     }
 
     /**
@@ -249,5 +253,104 @@ class BackendController
      */
     public function createEvent(){
         require('view/addEventView.php');
+    }
+    /**
+     * Add a new Event
+     */
+    public function addEvent(){
+        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['event_date'])
+        && strlen(trim($_POST['title']))):
+            $newEvent= new Event(array(
+                'title'=>$_POST['title'],
+                'content'=>$_POST['content'],
+                'event_date'=>$_POST['event_date']));
+            $created=$this->eventsManager->createEvent($newEvent);
+            if ($created === false):
+                $this->error=true;
+                $this->msg='Impossible d\'ajouter l\'évènement!';
+            else:
+                $this->msg='l\'évènement a bien été crée';
+            endif;
+        else:
+            $this->error=true;
+            $this->msg='Veuillez remplir le titre et le contenu de l\'évènement';
+        endif;
+        require('view/addEventView.php');
+    }
+    /**
+     * List of all events in the amdin part
+     */
+    public function getAllEvents(){
+        $events=$this->eventsManager->getAllEvents();
+        require('view/listEventsAdminView.php');
+    }
+    /**
+     * Delete One Event
+     */
+    public function deleteEvent(){
+        if (isset($_GET['id']) && $_GET['id'] > 0):
+            $deletedEvent=new Event(array('id'=>$_GET['id']));
+            $event = $this->eventsManager->eventDelete($deletedEvent);
+            if($event === false):
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/allEvents');
+            else:
+                header('Location:/p5/taekwondo/allEvents');
+            endif;
+        else :
+            $this->msg='Aucun identifiant de billet envoyé';
+            require('view/errorView.php');
+        endif; 
+    }
+    /**
+     * Show the event that need to be modify
+     */
+    public function modifyEvent(){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $event = $this->eventsManager->getEvent($_GET['id']);
+            if($event === false){
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/allEvents');
+            }
+            else{
+                require('view/updateEventView.php');
+            }
+        }
+        else {
+            $this->msg='Aucun identifiant d_évènement envoyé';
+            require('view/errorView.php');
+        }   
+    }
+    /**
+     * Upade an Event
+     */
+    public function updateEvent(){
+        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['event_date']) 
+        && strlen(trim($_POST['title']))){
+            $updatedEvent= new Event(array(
+                'title'=>$_POST['title'],
+                'content'=>$_POST['content'],
+                'event_date'=>$_POST['event_date'],
+                'id'=>$_GET['id']
+            ));
+            $update=$this->eventsManager->eventUpdate($updatedEvent);
+            var_dump($update);
+            if ($update === false) {
+                $event = $this->eventsManager->getEvent($_GET['id']);
+                $this->error= true;
+                $this->msg='Impossible de modifier l\'article !';
+                require('view/updateEventView.php');
+            }
+            else {
+                $this->msg='';
+                header('Location:/p5/taekwondo/allEvents');
+            }
+        }
+        else{
+            $event = $this->eventsManager->getEvent($_GET['id']);
+            $this->error= true;
+            $this->msg='Veuillez remplir tous les champs!';
+            require('view/updateEventView.php');
+        }
     }
 }

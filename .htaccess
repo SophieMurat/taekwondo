@@ -1,6 +1,10 @@
 RewriteEngine On
 #prevent to change the path to open the files
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^events$ index.php?action=events&page=1
+RewriteRule ^events/?([a-zA-Z0-9]*)?/?$ index.php?action=events&page=$1
 RewriteRule ^([a-zA-Z]*)/?([a-zA-Z0-9]*)?/?$ index.php?action=$1&id=$2
+
+
 
 

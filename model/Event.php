@@ -9,6 +9,7 @@ class Event extends Entity
     private $posted_date;
     private $content;
     private $event_date;
+    private $dateEvent;
 
     // Liste des getters
 
@@ -26,6 +27,9 @@ class Event extends Entity
     }
     public function getEvent_date(){
         return $this->event_date;
+    }
+    public function getDateEvent(){
+        return $this->dateEvent;
     }
 
     // liste des setters

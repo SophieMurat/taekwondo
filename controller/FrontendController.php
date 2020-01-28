@@ -4,6 +4,7 @@ namespace taekwondo\controller;
 
 use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
+use taekwondo\model\EventsManager;
 
 
 class FrontendController
@@ -11,10 +12,12 @@ class FrontendController
     public $msg= "";
     private $sliderManager;
     private $filesManager;
+    private $eventsManager;
 
     public function __construct(){
         $this->sliderManager = new SliderManager();
         $this->filesManager = new FilesManager();
+        $this->eventsManager = new EventsManager();
     }
 
     /**
@@ -73,6 +76,28 @@ class FrontendController
         require('view/errorView.php');
     }
     public function events(){
+        $count= $this->eventsManager->countEvent();
+        $currentPage=$_GET['page'] ?? 1;
+        var_dump($currentPage);
+        if(!filter_var($currentPage, FILTER_VALIDATE_INT)){
+            $this->msg='Numéro de page invalide';
+            require('view/errorView.php');
+        }
+        if($currentPage <= 0) {
+            $this->msg='Numéro de page invalide';
+            require('view/errorView.php');
+        }
+        /*if($currentPage === '1'){
+            header('Location: index.php?action=events');
+        }*/
+        $perPage= 3;
+        $start =$perPage*($currentPage-1);
+        $pages = ceil($count /$perPage);
+        if ($currentPage > $pages){
+            $this->msg='Cette page n\'existe pas';
+            require('view/errorView.php');
+        }
+        $events = $this->eventsManager->getEvents($start,$perPage);
         require('view/eventsView.php');
     }
 }
