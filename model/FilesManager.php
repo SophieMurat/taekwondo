@@ -21,11 +21,12 @@ class FilesManager extends Manager
     /**
      * insert a new signed adherent file
      */
-    public function uploadAdherentFile($adherentName,$adherentFirstname,$adherentCity,$fileName,$finalPath,$categorie){
+    public function uploadAdherentFile(FileAdherent $file,$finalPath,$categorie){
         $req = $this->db->prepare('INSERT INTO p5_adherent_files(adherent_name,
         adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl,upload_date,category_id) 
                     VALUES (?,?,?,?,?,NOW(),?)');
-        $req->execute(array($adherentName,$adherentFirstname,$adherentCity,$fileName,$finalPath,$categorie));
+        $req->execute(array($file->getAdherent_name(),$file->getAdherent_firstname(),$file->getAdherent_city(),
+        $file->getAdherent_fileName(),$finalPath,$categorie));
 
     }
     /**
@@ -46,6 +47,8 @@ class FilesManager extends Manager
         FROM p5_adherent_files 
         WHERE category_id=?"); 
         $req->execute(array($categoryFile));
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 
+        'taekwondo\model\FileAdherent');
         $signedFiles=$req->fetchAll();
         return $signedFiles;
     }

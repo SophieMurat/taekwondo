@@ -5,6 +5,7 @@ namespace taekwondo\controller;
 use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
 use taekwondo\model\EventsManager;
+use taekwondo\model\FileAdherent;
 
 
 class FrontendController
@@ -46,15 +47,18 @@ class FrontendController
             $finalPath= 'public/adherent_files/'.$fileName;
             $fileExtension= strrchr($fileName, ".");
             $extensionAllowed= array('.pdf', '.PDF');
-            $adherentName=$_POST['name'];
-            $adherentFirstname=$_POST['firstname'];
             $maxSize = 2000000;
             $size = ($_FILES['adherent_file']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
                 $movePath= move_uploaded_file($temporaryPath,$finalPath);
                 if($movePath):
-                    $uploadedFile=$this->filesManager->uploadAdherentFile($adherentName,$adherentFirstname,$_POST['city'],
-                    $fileName,$finalPath,$_POST['category']);
+                    $file= new FileAdherent(array(
+                        'adherent_name'=>$_POST['name'],
+                        'adherent_firstname'=>$_POST['firstname'],
+                        'adherent_city'=>$_POST['city'],
+                        'adherent_fileName'=>$_FILES['adherent_file']['name']
+                    ));
+                    $uploadedFile=$this->filesManager->uploadAdherentFile($file,$finalPath,$_POST['category']);
                     $this->msg =' le fichier a bien été chargé';;
                 else :
                     $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';

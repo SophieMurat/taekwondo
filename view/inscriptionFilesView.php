@@ -67,11 +67,11 @@
         <tbody>
     <?php foreach($fileCategory as $data):?>
         <tr>
-            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_name']) ?></td>
-            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_firstname']) ?></td>
-            <td class="non_responsive"><?php echo htmlspecialchars($data['adherent_city']) ?></td>
-            <td class="non_responsive"><?php echo htmlspecialchars($data['sentDate']) ?></td>
-            <td class="non_responsive"><a href ="<?php echo $data['adherent_fileUrl'] ?>">Télécharger</a></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_name()) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_firstname()) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_city()) ?></td>
+            <td class="non_responsive"><?php echo htmlspecialchars($data->getSentDate()) ?></td>
+            <td class="non_responsive"><a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a></td>
             
         </tr>
     <?php
