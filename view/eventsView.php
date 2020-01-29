@@ -7,14 +7,14 @@
       ?>
         <div class="post-preview">
             <h2 class="post-title">
-                <?= htmlspecialchars($event->getTitle()) ?>
+                <?php echo htmlspecialchars($event->getTitle()) ?>
             </h2>
             <h3 class="post-subtitle">
-                <?= $event->getContent() ?>
+                <?php echo $event->getContent() ?>
                 <br/>
             </h3>
           </a>
-          <p class="post-meta">Aura lieu le <?= htmlspecialchars($event->getDateEvent()) ?>
+          <p class="post-meta">Aura lieu le <?php echo htmlspecialchars($event->getDateEvent()) ?>
         </div>
         <hr>
 <?php
@@ -22,10 +22,10 @@ endforeach;
 ?>
 <div>
     <?php if ($currentPage >1): ?>
-      <a href="index.php?action=events&amp;page=<?= $currentPage -1 ?>"><button class="btn btn-primary">&laquo; Page précédente</button></a>
+      <a href="index.php?action=events&amp;page=<?php echo $currentPage -1 ?>"><button class="btn btn-primary">&laquo; Page précédente</button></a>
     <?php endif ?>
     <?php if ($currentPage <$pages): ?>
-      <a href="index.php?action=events&amp;page=<?= $currentPage +1 ?>"><button class="btn btn-primary">Page suivante &raquo;</button></a>
+      <a href="index.php?action=events&amp;page=<?php echo $currentPage +1 ?>"><button class="btn btn-primary">Page suivante &raquo;</button></a>
     <?php endif ?>
 </div>
 

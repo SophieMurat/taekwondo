@@ -9,13 +9,13 @@
       ?>
         <div class="post-preview">
             <h2 class="post-title">
-                <?= htmlspecialchars($data->getTitle()) ?>
+                <?php echo htmlspecialchars($data->getTitle()) ?>
             </h2>
             <h3 class="post-subtitle">
-                <?= $data->getContent() ?>
+                <?php echo $data->getContent() ?>
                 <br/>
             </h3>
-            <p class="post-meta">se déroulera le  <?= $data->getDateEvent() ?> </p>
+            <p class="post-meta">se déroulera le  <?php echo $data->getDateEvent() ?> </p>
             <a class="btn btn-danger" href="deleteEvent/<?php echo $data->getId()?>" role="button">Supprimer</a>
             <a class="btn btn-primary" href="modifyEvent/<?php echo $data->getId()?>" role="button">Modifier</a>
           </a>

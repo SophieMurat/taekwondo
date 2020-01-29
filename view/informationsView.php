@@ -7,7 +7,7 @@
 <?php
 while($data = $inscriptionFiles->fetch()):
 ?>
-     <p> <?=$data->getTitle_file()?> : <a href ="<?=$data->getFile_url()?>">Télécharger</a></p>
+     <p> <?php echo $data->getTitle_file()?> : <a href ="<?php echo $data->getFile_url()?>">Télécharger</a></p>
  <?php 
  endwhile;
  $inscriptionFiles->closeCursor();
@@ -35,7 +35,7 @@ while($data = $inscriptionFiles->fetch()):
                             <select name="category" class="form-control p-1" id="category">
                                 <?php while ($category=$categories->fetch()):?>
                                 <option
-                                value="<?= $category->getId()?>"><?= $category->getCategory_name()?></option>
+                                value="<?php echo $category->getId()?>"><?php echo $category->getCategory_name()?></option>
                                 <?php endwhile; ?>
                             </select>
                         </label>
@@ -48,7 +48,7 @@ while($data = $inscriptionFiles->fetch()):
                         value="Envoyer le fichier">
                     </div>
                     <div class="form-group">
-                        <h5 class="text-center text-light"><?= $this->msg; ?></h5>
+                        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
                     </div>
                 </form>
             </div>

@@ -3,9 +3,9 @@
   <div class="row justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Modifiez l'image sélectionnée</h4>
-    <form action="updateImage/<?=$_GET['id']?>" method="post" enctype="multipart/form-data">
+    <form action="updateImage/<?php echo $_GET['id']?>" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <input type="text" name="title" class="form-control p-1" value="<?= $imageModify->getImage_title()?>" required>
+        <input type="text" name="title" class="form-control p-1" value="<?php echo $imageModify->getImage_title()?>" required>
       </div>
       <div class="form-group">
         <input type="file" name="image" class="form-control p-1" required>
@@ -15,7 +15,7 @@
         value="Télécharger l'image">
       </div>
       <div class="form-group">
-        <h5 class="text-center text-light"><?= $this->msg; ?></h5>
+        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
       </div>
     </form>
     </div>

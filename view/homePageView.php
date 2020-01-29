@@ -14,7 +14,7 @@
       $actives = 'active';
     endif;
   ?>
-    <li data-target="#myCarousel" data-slide-to="<?= $count;?>" class="<?= $actives;?>"></li>
+    <li data-target="#myCarousel" data-slide-to="<?php echo $count;?>" class="<?php echo $actives;?>"></li>
     <?php $count++; 
     endforeach;
     ?>
@@ -29,10 +29,10 @@
         $actives = 'active';
       endif;
     ?>
-    <div class="carousel-item <?= $actives ?>">
-      <img class="d-block w-100" src="<?= $row->getImage_path(); ?>" alt="taekwondo">
+    <div class="carousel-item <?php echo $actives ?>">
+      <img class="d-block w-100" src="<?php echo $row->getImage_path(); ?>" alt="taekwondo">
       <div class="carousel-caption d-none d-md-block">
-        <h4><?= $row->getImage_title()?></h4>
+        <h4><?php echo $row->getImage_title()?></h4>
       </div>
     </div>
     <?php $count++; 

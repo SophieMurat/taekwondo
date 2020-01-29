@@ -30,7 +30,7 @@
                 </div>
             </form>
             <?php if ($this->error): ?>
-            <p class="alert alert-danger" id="createError"><?= $this->msg ?></p>
+            <p class="alert alert-danger" id="createError"><?php echo $this->msg ?></p>
             <?php endif ?>
         </div>
       </div>

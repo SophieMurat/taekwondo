@@ -15,7 +15,7 @@
         value="Télécharger l'image">
       </div>
       <div class="form-group">
-        <h5 class="text-center text-light"><?= $this->msg; ?></h5>
+        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
       </div>
     </form>
     </div>
@@ -33,9 +33,9 @@
     <?php 
     foreach($slides as $slide):?>
     <div class="col-lg-3 col-md-4 col-6">
-            <img class="img-fluid img-thumbnail" src="<?= $slide->getImage_path();?>" alt="Taekwondo">
-            <a href="modifyImage/<?=$slide->getId()?>"><button type="button" class="btn btn-primary">Modifier</button></a>
-            <a href="deleteImage/<?=$slide->getId()?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+            <img class="img-fluid img-thumbnail" src="<?php echo $slide->getImage_path();?>" alt="Taekwondo">
+            <a href="modifyImage/<?php echo $slide->getId()?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+            <a href="deleteImage/<?php echo $slide->getId()?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
     </div>
     <?php endforeach?>
   </div>

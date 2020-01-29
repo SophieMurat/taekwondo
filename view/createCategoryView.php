@@ -12,7 +12,7 @@
         value="Créer">
       </div>
       <div class="form-group">
-        <h5 class="text-center text-light"><?= $this->msg; ?></h5>
+        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
       </div>
     </form>
     </div>
@@ -22,8 +22,8 @@
         <h4 class="text-center text-light p-1">Liste des catégories</h4>
         <?php foreach($categories as $category):?>
             <div>
-                <p class="text-light text-center"><?= $category->getCategory_name()?></p>
-                    <a href="deleteCategory/<?=$category->getId() ?>">
+                <p class="text-light text-center"><?php echo $category->getCategory_name()?></p>
+                    <a href="deleteCategory/<?php echo $category->getId() ?>">
                       <button class="btn btn-warning">Supprimer</button>
                     </a>
             </div>

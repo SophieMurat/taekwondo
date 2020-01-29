@@ -23,7 +23,7 @@
             </div>
         </form>
         <?php if ($this->error): ?>
-        <p class="alert alert-danger" id="errorLogin"><?= $this->msg ?></p>
+        <p class="alert alert-danger" id="errorLogin"><?php echo $this->msg ?></p>
         <?php endif ?>
 
 <?php $content = ob_get_clean(); ?>

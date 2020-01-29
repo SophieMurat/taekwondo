@@ -17,7 +17,7 @@
                     value="Envoyer le fichier">
                 </div>
                 <div class="form-group">
-                    <h5 class="text-center text-light"><?= $this->msg; ?></h5>
+                    <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
                 </div>
             </form>
         </div>
@@ -37,7 +37,7 @@
                             <option <?php if(isset($_POST['fileCategory'])):
                                 if($category->getId() == $_POST['category']) echo "selected='selected'"; 
                             endif;?>
-                            value="<?= $category->getId()?>"><?= $category->getCategory_name()?>
+                            value="<?php echo $category->getId()?>"><?php echo $category->getCategory_name()?>
                             </option>
                         <?php endwhile;?>
                         </select>

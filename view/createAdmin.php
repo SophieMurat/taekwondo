@@ -34,7 +34,7 @@
             </div>
         </form>
         <?php if ($this->error): ?>
-        <p class="alert alert-danger" id="createAccountError"><?= $this->msg ?></p>
+        <p class="alert alert-danger" id="createAccountError"><?php echo $this->msg ?></p>
         <?php endif ?>
       </div>
     </div>
