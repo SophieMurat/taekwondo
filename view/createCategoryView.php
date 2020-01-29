@@ -22,8 +22,8 @@
         <h4 class="text-center text-light p-1">Liste des catégories</h4>
         <?php foreach($categories as $category):?>
             <div>
-                <p class="text-light text-center"><?= $category['category_name']?></p>
-                    <a href="deleteCategory/<?=$category['id'] ?>">
+                <p class="text-light text-center"><?= $category->getCategory_name()?></p>
+                    <a href="deleteCategory/<?=$category->getId() ?>">
                       <button class="btn btn-warning">Supprimer</button>
                     </a>
             </div>

@@ -5,7 +5,7 @@
     <h4 class="text-center text-light p-1">Modifiez l'image sélectionnée</h4>
     <form action="updateImage/<?=$_GET['id']?>" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <input type="text" name="title" class="form-control p-1" value="<?= $imageModify['image_title']?>" required>
+        <input type="text" name="title" class="form-control p-1" value="<?= $imageModify->getImage_title()?>" required>
       </div>
       <div class="form-group">
         <input type="file" name="image" class="form-control p-1" required>

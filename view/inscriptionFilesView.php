@@ -35,9 +35,9 @@
                         <select name="category" class="form-control p-1" id="category">
                         <?php while ($category=$categories->fetch()):?>
                             <option <?php if(isset($_POST['fileCategory'])):
-                                if($category['id'] == $_POST['category']) echo "selected='selected'"; 
+                                if($category->getId() == $_POST['category']) echo "selected='selected'"; 
                             endif;?>
-                            value="<?= $category['id']?>"><?= $category['category_name']?>
+                            value="<?= $category->getId()?>"><?= $category->getCategory_name()?>
                             </option>
                         <?php endwhile;?>
                         </select>

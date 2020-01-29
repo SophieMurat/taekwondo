@@ -30,9 +30,9 @@
       endif;
     ?>
     <div class="carousel-item <?= $actives ?>">
-      <img class="d-block w-100" src="<?= $row['image_path']; ?>" alt="taekwondo">
+      <img class="d-block w-100" src="<?= $row->getImage_path(); ?>" alt="taekwondo">
       <div class="carousel-caption d-none d-md-block">
-        <h4><?= $row['image_title'];?></h4>
+        <h4><?= $row->getImage_title()?></h4>
       </div>
     </div>
     <?php $count++; 

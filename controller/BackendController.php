@@ -8,6 +8,9 @@ use taekwondo\model\AdminManager;
 use taekwondo\model\Admin;
 use taekwondo\model\EventsManager;
 use taekwondo\model\Event;
+use taekwondo\model\FileAdmin;
+use taekwondo\model\Category;
+use taekwondo\model\Slide;
 
 
 class BackendController
@@ -41,10 +44,14 @@ class BackendController
             $maxSize = 2000000;
             $size = ($_FILES['image']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $newSlide= $this->sliderManager->addOneImage($path,$title);
+                $slide=new Slide(array(
+                    'image_title'=>$_POST['title'],
+                    'image_path'=>'public/img/'.$imageName
+                ));
+                $newSlide= $this->sliderManager->addOneImage($slide);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath):
-                    header('Location:/p5/taekwondo/addImage');
+                    //header('Location:/p5/taekwondo/addImage');
                 else:
                     $this->msg = 'erreur lors de l\'ajout de l\'image';
                 endif;
@@ -62,16 +69,20 @@ class BackendController
     public function updateImage(){
         if (isset($_POST['upload'])):
             $image = $_FILES['image']['name'];
-            $title= $_POST['title'];
             $temp = explode(".", $image);
             $imageName=round(microtime(true)). '.'. end($temp);
-            $path ='public/img/'.$imageName;
+            $path='public/img/'.$imageName;
             $fileExtension= strrchr($imageName, ".");
             $extensionAllowed= array('.png', '.jpg', '.jpeg');
             $maxSize = 2000000;
             $size = ($_FILES['image']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $newSlide= $this->sliderManager->modifySlide($path,$title,$_GET['id']);
+                $slide= new Slide(array(
+                   'image_path'=>$path,
+                   'image_title'=>$_POST['title'],
+                   'id'=>$_GET['id']
+                ));
+                $newSlide= $this->sliderManager->modifySlide($slide);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath){
                     header('Location:/p5/taekwondo/addImage');
@@ -93,7 +104,10 @@ class BackendController
      * Delete a slide
      */
     public function deleteSlide(){
-        $deletedSlide=$this->sliderManager->deleteSlide($_GET['id']);
+        $slide= new Slide(array(
+            'id'=>$_GET['id']
+        ));
+        $deletedSlide=$this->sliderManager->deleteSlide($slide);
         header('Location:/p5/taekwondo/addImage');
     }
     /**
@@ -116,11 +130,15 @@ class BackendController
             $finalPath = 'public/admin_files/'.$file_name;
             $fileExtension = strrchr($file_name, ".");
             $extensionAllowed = array('.pdf', '.PDF');
-            $titleFile=$_POST['fileName'];
             $maxSize = 2000000;
             $size = ($_FILES['pdf_file']['size']);
             if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $newFile= $this->filesManager->addAdminFile($file_name,$finalPath,$titleFile);
+                $file= new FileAdmin(array(
+                    'name_file'=>$_FILES['pdf_file']['name'],
+                    'file_url'=>'public/admin_files/'.$_FILES['pdf_file']['name'],
+                    'Title_file'=>$_POST['fileName']
+                ));
+                $newFile= $this->filesManager->addAdminFile($file);
                 $path=move_uploaded_file($temporaryPath,$finalPath);
                 if($path):
                     move_uploaded_file($temporaryPath,$finalPath);
@@ -222,7 +240,10 @@ class BackendController
     public function createCategory(){
         $categories=$this->filesManager->chooseCategory();
         if(isset($_POST['create'])):
-            $newCategory=$this->filesManager->addCategory($_POST['category']);
+            $category= new Category(array(
+                'category_name'=>$_POST['category']
+            ));
+            $newCategory=$this->filesManager->addCategory($category);
             header('Location:/p5/taekwondo/createCategory');
         endif;
         require('view/createCategoryView.php');
@@ -232,7 +253,10 @@ class BackendController
      */
     public function deleteCategory(){
         $categories=$this->filesManager->chooseCategory();
-        $deleted=$this->filesManager->deleteCategory($_GET['id']);
+        $category= new Category(array(
+            'id'=>$_GET['id']
+        ));
+        $deleted=$this->filesManager->deleteCategory($category);
         header('Location:/p5/taekwondo/createCategory');
     }
     /**

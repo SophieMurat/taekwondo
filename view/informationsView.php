@@ -5,8 +5,9 @@
 <h1>Fiches d'inscription</h1>
 
 <?php
-while($data = $inscriptionFiles->fetch()):?>
-     <p> <?=$data['title_file'];?> : <a href ="<?=$data['file_url'];?>">Télécharger</a></p>
+while($data = $inscriptionFiles->fetch()):
+?>
+     <p> <?=$data->getTitle_file()?> : <a href ="<?=$data->getFile_url()?>">Télécharger</a></p>
  <?php 
  endwhile;
  $inscriptionFiles->closeCursor();
@@ -34,7 +35,7 @@ while($data = $inscriptionFiles->fetch()):?>
                             <select name="category" class="form-control p-1" id="category">
                                 <?php while ($category=$categories->fetch()):?>
                                 <option
-                                value="<?= $category['id']?>"><?= $category['category_name']?></option>
+                                value="<?= $category->getId()?>"><?= $category->getCategory_name()?></option>
                                 <?php endwhile; ?>
                             </select>
                         </label>
