@@ -19,7 +19,7 @@ class EventsManager extends Manager
     public function getEvents($start,$perPage){
         $req=$this->db->query("SELECT title, posted_date, content,
         DATE_FORMAT(event_date,'%d/%m/%Y') AS dateEvent FROM events
-        ORDER BY dateEvent DESC LIMIT $start,$perPage");
+        ORDER BY STR_TO_DATE(dateEvent,'%d/%m/%Y') DESC LIMIT $start,$perPage");
         $events=$req->fetchAll(\PDO::FETCH_CLASS,'taekwondo\model\Event');
         return $events;
     }

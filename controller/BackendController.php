@@ -51,7 +51,7 @@ class BackendController
                 $newSlide= $this->sliderManager->addOneImage($slide);
                 $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                 if($movePath):
-                    //header('Location:/p5/taekwondo/addImage');
+                    header('Location:/p5/taekwondo/addImage');
                 else:
                     $this->msg = 'erreur lors de l\'ajout de l\'image';
                 endif;

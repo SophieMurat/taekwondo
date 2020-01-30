@@ -1,6 +1,25 @@
 body {
-    padding-top: 70px;
+    font-family: 'Bitter', serif;
+    background-color: #eef;
+    color: #333;
+    background: url('../img/fond2.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    position: relative;
+    padding-top:56px;
 }
 button #confirm .inactive{
     display: none !important;
+}
+.jumbotron {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+.errorMsg{
+    padding:10%;
+}
+/*#myPage #slider .carrousel-item .active{
+    max-height: 600px !important;
 }

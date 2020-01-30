@@ -82,26 +82,29 @@ class FrontendController
     public function events(){
         $count= $this->eventsManager->countEvent();
         $currentPage=$_GET['page'] ?? 1;
-        var_dump($currentPage);
-        if(!filter_var($currentPage, FILTER_VALIDATE_INT)){
+        if(!filter_var($currentPage, FILTER_VALIDATE_INT)):
             $this->msg='Numéro de page invalide';
             require('view/errorView.php');
-        }
-        if($currentPage <= 0) {
+            exit;
+        endif;
+        if($currentPage <= 0):
             $this->msg='Numéro de page invalide';
             require('view/errorView.php');
-        }
-        /*if($currentPage === '1'){
-            header('Location: index.php?action=events');
-        }*/
+            exit;
+        endif;
+        /*if($currentPage === '1'):
+            header('Location:/p5/taekwondo/events');
+            exit;
+        endif;*/
         $perPage= 3;
         $start =$perPage*($currentPage-1);
         $pages = ceil($count /$perPage);
-        if ($currentPage > $pages){
-            $this->msg='Cette page n\'existe pas';
+        if ($currentPage > $pages):
+            $this->msg='Pas d\'évènements disponibles sur cette page';
             require('view/errorView.php');
-        }
+        else:
         $events = $this->eventsManager->getEvents($start,$perPage);
         require('view/eventsView.php');
+        endif;
     }
 }
