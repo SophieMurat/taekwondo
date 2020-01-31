@@ -30,13 +30,14 @@ class EventsManager extends Manager
         $count=(int)$this->db->query('SELECT COUNT(id) FROM events')->fetch()[0];
         return $count;
     }
-      /**
-     * Get all events
+    /**
+     * Get all events in admin part
      */
     public function getAllEvents()
     {
         $req = $this->db->query("SELECT id, title, content, 
-       DATE_FORMAT(event_date,'%d/%m/%Y') AS dateEvent FROM events ORDER BY dateEvent DESC");
+       DATE_FORMAT(event_date,'%d/%m/%Y') AS dateEvent FROM events ORDER BY STR_TO_DATE(dateEvent,'%d/%m/%Y')
+        DESC");
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 
         'taekwondo\model\Event');
         return $req;

@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
-  <div class="row justify-content-center">
+  <div class="row jumbotron justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Choisissez une image à ajouter</h4>
     <form action="addImage" method="post" enctype="multipart/form-data">
@@ -24,20 +24,21 @@
 
 <!-- Affichage de toutes les images pour pouvoir les modifier ou les supprimer-->
 <div class="container">
+  <div class="jumbotron row text-center">
+    <h1 class="font-weight-light text-center mb-5 col-lg-12">Actions sur les images du slider</h1>
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Actions sur les images du slider</h1>
-
-  <hr class="mt-2 mb-5">
-
-  <div class="row text-center text-lg-left">
-    <?php 
-    foreach($slides as $slide):?>
-    <div class="col-lg-3 col-md-4 col-6">
-            <img class="img-fluid img-thumbnail" src="<?php echo $slide->getImage_path();?>" alt="Taekwondo">
-            <a href="modifyImage/<?php echo $slide->getId()?>"><button type="button" class="btn btn-primary">Modifier</button></a>
-            <a href="deleteImage/<?php echo $slide->getId()?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+    <div class="row text-center text-lg-left">
+      <?php 
+      foreach($slides as $slide):?>
+      <div class="col-lg-3 col-md-4 col-6">
+              <img class="img-fluid img-thumbnail" src="<?php echo $slide->getImage_path();?>" alt="Taekwondo">
+              <div class="row justify-content-around">
+                <a class="btn btn-primary mt-1" href="modifyImage/<?php echo $slide->getId()?>" role="button">Modifier</a>
+                <a class="btn btn-danger mt-1" href="deleteImage/<?php echo $slide->getId()?>" role="button">Supprimer</a>
+              </div>
+      </div>
+      <?php endforeach?>
     </div>
-    <?php endforeach?>
   </div>
 </div>
 

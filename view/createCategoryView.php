@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<div class="container-fluid">
+<div class="container-fluid mt-3">
   <div class="row justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Ajouter une nouvelle catégorie</h4>
@@ -17,16 +17,15 @@
     </form>
     </div>
   </div>
-  <div class="row justify-content-center" id="list" style="margin-top:10%">
+  <div class="row justify-content-center mt-5" id="list">
     <div class="col-lg-4 bg-dark rounded px-4">
         <h4 class="text-center text-light p-1">Liste des catégories</h4>
         <?php foreach($categories as $category):?>
-            <div>
-                <p class="text-light text-center"><?php echo $category->getCategory_name()?></p>
-                    <a href="deleteCategory/<?php echo $category->getId() ?>">
-                      <button class="btn btn-warning">Supprimer</button>
-                    </a>
-            </div>
+            <ul>
+                <li class="text-light d-flex justify-content-between"><?php echo $category->getCategory_name()?>
+                    <a class="btn btn-warning" href="deleteCategory/<?php echo $category->getId() ?>" role="button">Supprimer</a>
+                </li>
+        </ul>
         <?php endforeach;?>
     </div>
   </div>

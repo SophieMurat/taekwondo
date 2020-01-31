@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
-  <div class="row justify-content-center">
+  <div class="row jumbotron justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Modifiez l'image sélectionnée</h4>
     <form action="updateImage/<?php echo $_GET['id']?>" method="post" enctype="multipart/form-data">

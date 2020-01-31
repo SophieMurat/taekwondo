@@ -2,7 +2,7 @@
  
 <article>
     <div class="container">
-      <div class="row">
+      <div class="row jumbotron text-center font-weight-bold">
         <div class="col-lg-8 col-md-10 mx-auto">
             <form action="updateEvent/<?php echo $event->getId() ?>" name="updateEvent" method="post" novalidate>
                 <div class="control-group">

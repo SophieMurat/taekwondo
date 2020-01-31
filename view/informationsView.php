@@ -1,17 +1,22 @@
 
 
 <?php ob_start(); ?>
-
-<h1>Fiches d'inscription</h1>
-
-<?php
-while($data = $inscriptionFiles->fetch()):
-?>
-     <p> <?php echo $data->getTitle_file()?> : <a href ="<?php echo $data->getFile_url()?>">Télécharger</a></p>
- <?php 
- endwhile;
- $inscriptionFiles->closeCursor();
-?>
+<div class="container">
+    <div class="jumbotron row text-center">
+        <h1 class="col-lg-12">Fiches d'inscription à télécharger</h1>
+            <ul class="list-unstyled col-lg-12">
+            <?php
+            while($data = $inscriptionFiles->fetch()):
+            ?>
+                <li><a href ="<?php echo $data->getFile_url()?>"><?php echo $data->getTitle_file()?></a></li>
+            <?php 
+            endwhile;
+            $inscriptionFiles->closeCursor();
+            ?>
+            </ul>
+            <h2 class="col-lg-12">Renvoyer les fiches remplies et signées via le formulaire ci-dessous</h2>
+    </div>
+</div>
 <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-4 bg-dark rounded px-4">

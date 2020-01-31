@@ -2,26 +2,20 @@
  
 <article>
     <div class="container">
-      <div class="row">
+      <div class="row jumbotron text-center font-weight-bold">
         <div class="col-lg-8 col-md-10 mx-auto">
             <form action="addEvent#createError" name="addEvent" method="post" novalidate>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
+                <div class="form-group">
                     <label>Titre</label>
                     <input type="text" class="form-control" name="title" placeholder="Titre" id="title" required>
-                    </div>
                 </div>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
+                <div class="form-group">
                     <label>Date de l'évènement</label>
                     <input type="date" class="form-control" name="event_date" id="dateEvent" required>
-                    </div>
                 </div>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
-                    <label>Chapitre</label>
+                <div class="form-group">
+                    <label>Description de l'évènement</label>
                     <textarea rows="5" placeholder="Contenu" name="content" id="event_content" required></textarea>
-                    </div>
                 </div>
                 <br>
                 <div id="success"></div>
