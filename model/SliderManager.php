@@ -34,14 +34,6 @@ class SliderManager extends Manager
         return $image;
     }
     /**
-     * Modify one image of the slider
-     */
-    public function modifySlide(Slide $slide){
-        $req=$this->db->prepare('UPDATE p5_images SET image_path=?, image_title=? WHERE id=?');
-        $updatedImage=$req->execute(array($slide->getImage_path(),$slide->getImage_title(),$slide->getId()));
-        return $updatedImage;
-    }
-    /**
      * Delete one image from the slider
      */
     public function deleteSlide(Slide $slide){

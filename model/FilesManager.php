@@ -29,7 +29,6 @@ class FilesManager extends Manager
                     VALUES (?,?,?,?,?,NOW(),?)');
         $req->execute(array($file->getAdherent_name(),$file->getAdherent_firstname(),$file->getAdherent_city(),
         $file->getAdherent_fileName(),$finalPath,$categorie));
-        var_dump($file->getAdherent_name());
 
     }
     /**
@@ -45,7 +44,7 @@ class FilesManager extends Manager
      * Select the signed inscriptions files according to there categories.
      */
     public function signedFiles($categoryFile){
-        $req = $this->db->prepare("SELECT adherent_name,
+        $req = $this->db->prepare("SELECT id,adherent_name,
         adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl, 
         DATE_FORMAT(upload_date,GET_FORMAT(DATE, 'EUR')) 
         AS sentDate ,category_id 
@@ -56,6 +55,13 @@ class FilesManager extends Manager
         'taekwondo\model\FileAdherent');
         $signedFiles=$req->fetchAll();
         return $signedFiles;
+    }
+    /**
+     * Delete adherent files
+     */
+    public function deleteAdherentFile(FileAdherent $adherentFile){
+        $req =$this->db->prepare('DELETE FROM p5_adherent_files WHERE id=?');
+        $req->execute(array($adherentFile->getId()));
     }
     /**
      * Add a new Category

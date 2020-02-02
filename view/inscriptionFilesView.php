@@ -56,6 +56,7 @@
                 <th>Commune de résidence</th>
                 <th>Date d'envoi</th>
                 <th>Télécharger</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -66,7 +67,7 @@
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_city()) ?></td>
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getSentDate()) ?></td>
                 <td class="non_responsive"><a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a></td>
-                
+                <td class="non_responsive"><a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a></td>                
             </tr>
         <?php
         endforeach;

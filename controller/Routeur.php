@@ -34,8 +34,6 @@ class Routeur {
                 elseif(!empty($_SESSION)):
                     if ($_GET['action'] == 'addImage'):
                         $this->BackendController->addImage();
-                    elseif ($_GET['action'] == 'updateImage'):
-                        $this->BackendController->updateImage();
                     elseif ($_GET['action'] == 'addInscriptionFileChoice'):
                         $this->BackendController->addInscriptionFileChoice();                         
                     elseif ($_GET['action'] == 'deleteImage'):
@@ -46,6 +44,8 @@ class Routeur {
                         $this->BackendController->admin();
                     elseif ($_GET['action'] == 'getSignedFiles'):
                         $this->BackendController->getsignedFiles();
+                    elseif ($_GET['action'] == 'deleteAdherentFile'):
+                        $this->BackendController->deleteAdherentFile();
                     elseif ($_GET['action'] == 'adminCreate'):
                         $this->BackendController->adminCreate();
                     elseif ($_GET['action'] == 'unlog'):
@@ -54,10 +54,6 @@ class Routeur {
                         $this->BackendController->createCategory();
                     elseif ($_GET['action'] == 'deleteCategory'):
                         $this->BackendController->deleteCategory();
-                    elseif ($_GET['action'] == 'cancelConfirm'):
-                        $this->BackendController->cancelConfirm();
-                    elseif ($_GET['action'] == 'modifyImage'):
-                        $this->BackendController->modifyImage();
                     elseif ($_GET['action'] == 'eventManagement'):
                         $this->BackendController->eventManagement();
                     elseif ($_GET['action'] == 'createEvent'):

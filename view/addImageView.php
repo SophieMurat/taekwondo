@@ -25,17 +25,15 @@
 <!-- Affichage de toutes les images pour pouvoir les modifier ou les supprimer-->
 <div class="container">
   <div class="jumbotron row text-center">
-    <h1 class="font-weight-light text-center mb-5 col-lg-12">Actions sur les images du slider</h1>
+    <h2 class="font-weight-light text-center mb-5 col-lg-12">Actions sur les images du slider</h2>
 
     <div class="row text-center text-lg-left">
       <?php 
       foreach($slides as $slide):?>
-      <div class="col-lg-3 col-md-4 col-6">
+      <div class="col-lg-3 col-md-4 col-6 text-center">
+              <h3><?php echo $slide->getImage_title();?></h3>
               <img class="img-fluid img-thumbnail" src="<?php echo $slide->getImage_path();?>" alt="Taekwondo">
-              <div class="row justify-content-around">
-                <a class="btn btn-primary mt-1" href="modifyImage/<?php echo $slide->getId()?>" role="button">Modifier</a>
-                <a class="btn btn-danger mt-1" href="deleteImage/<?php echo $slide->getId()?>" role="button">Supprimer</a>
-              </div>
+              <a class="btn btn-danger justify-content-around mt-1" href="deleteImage/<?php echo $slide->getId()?>" role="button">Supprimer</a>
       </div>
       <?php endforeach?>
     </div>

@@ -1,5 +1,6 @@
 <?php ob_start(); ?>
-<div class="container mt-5 pt-5">
+<div class="container mt-5 pt-5 text-center">
+    <h2 class="text-white">Bonjour <?php echo $_SESSION['user_name'] ?>!</h2>
     <div class="row justify-content-around">
         <div class="col-xl-4 col-md-6 mb-4 mt-5">
             <div class="card border-left-primary shadow h-100 py-2">

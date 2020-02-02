@@ -11,6 +11,7 @@ use taekwondo\model\Event;
 use taekwondo\model\FileAdmin;
 use taekwondo\model\Category;
 use taekwondo\model\Slide;
+use taekwondo\model\FileAdherent;
 
 
 class BackendController
@@ -64,43 +65,6 @@ class BackendController
         require('view/addImageView.php');
     }
     /**
-     * modify a slide
-     */
-    public function updateImage(){
-        if (isset($_POST['upload'])):
-            $image = $_FILES['image']['name'];
-            $temp = explode(".", $image);
-            $imageName=round(microtime(true)). '.'. end($temp);
-            $path='public/img/'.$imageName;
-            $fileExtension= strrchr($imageName, ".");
-            $extensionAllowed= array('.png', '.jpg', '.jpeg');
-            $maxSize = 2000000;
-            $size = ($_FILES['image']['size']);
-            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $slide= new Slide(array(
-                   'image_path'=>$path,
-                   'image_title'=>$_POST['title'],
-                   'id'=>$_GET['id']
-                ));
-                $newSlide= $this->sliderManager->modifySlide($slide);
-                $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
-                if($movePath){
-                    header('Location:/p5/taekwondo/addImage');
-                }
-                else{
-                    $this->msg = 'erreur lors de l\'ajout de l\'image';
-                }
-            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
-                $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
-                $this->msg='L\'image ne doit pas faire plus de 2Mo';
-            else:
-                $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
-                $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
-            endif;
-        endif;
-        require('view/modifyImageView.php');
-    }
-    /**
      * Delete a slide
      */
     public function deleteSlide(){
@@ -119,6 +83,17 @@ class BackendController
             $fileCategory=$this->filesManager->signedFiles($_POST['category']);
         endif;
         require('view/inscriptionFilesView.php');  
+    }
+    /**
+     * Delete an adherent file
+     */
+    public function deleteAdherentFile(){
+        $categories=$this->filesManager->chooseCategory();
+        $file= new FileAdherent(array(
+            'id'=>$_GET['id']
+        ));
+        $deletedFile=$this->filesManager->deleteAdherentFile($file);
+        require('view/inscriptionFilesView.php');
     }
     /***
      * Add an inscription file from the admin part
@@ -142,7 +117,7 @@ class BackendController
                 $path=move_uploaded_file($temporaryPath,$finalPath);
                 if($path):
                     move_uploaded_file($temporaryPath,$finalPath);
-                    $this->msg =' le fichier a bien été chargé';
+                    $this->msg =' Le fichier a bien été envoyé';
                 else:
                     $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
                 endif;
@@ -200,7 +175,6 @@ class BackendController
         if(isset($_POST['submit'])):
             if (!empty($_POST['login']) && !empty($_POST['password'])):
                 $admin =$this->adminsManager->login($_POST['login']);
-                var_dump($admin);
                 if(!$admin):
                     $this->error=true;
                     $this->msg ='Login inconnu seuls les administrateurs ont accès
@@ -293,11 +267,12 @@ class BackendController
                 $this->error=true;
                 $this->msg='Impossible d\'ajouter l\'évènement!';
             else:
-                $this->msg='l\'évènement a bien été crée';
+                $this->error=true;
+                $this->msg='L\'évènement a bien été crée';
             endif;
         else:
             $this->error=true;
-            $this->msg='Veuillez remplir le titre et le contenu de l\'évènement';
+            $this->msg='Veuillez remplir le titre, la date et le contenu de l\'évènement';
         endif;
         require('view/addEventView.php');
     }
@@ -358,7 +333,6 @@ class BackendController
                 'id'=>$_GET['id']
             ));
             $update=$this->eventsManager->eventUpdate($updatedEvent);
-            var_dump($update);
             if ($update === false) {
                 $event = $this->eventsManager->getEvent($_GET['id']);
                 $this->error= true;
@@ -366,7 +340,6 @@ class BackendController
                 require('view/updateEventView.php');
             }
             else {
-                $this->msg='';
                 header('Location:/p5/taekwondo/allEvents');
             }
         }
