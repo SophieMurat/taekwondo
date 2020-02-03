@@ -1,3 +1,6 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
 body {
     font-family: 'Bitter', serif;
     background-color: #eef;
@@ -9,17 +12,24 @@ body {
     -o-background-size: cover;
     position: relative;
     padding-top:56px;
+    position:relative;
+}
+h1,h2{
+    font-family: 'Bebas Neue', cursive;
+}
+p{
+    font-size: 1.5rem;
 }
 button #confirm .inactive{
     display: none !important;
 }
 .jumbotron {
     margin-top: 40px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
   }
 .errorMsg{
     padding:10%;
 }
-/*#myPage #slider .carrousel-item .active{
+.carousel-item{
     max-height: 600px !important;
 }

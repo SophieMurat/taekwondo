@@ -14,7 +14,7 @@
             $inscriptionFiles->closeCursor();
             ?>
             </ul>
-            <h2 class="col-lg-12">Renvoyer les fiches remplies et signées via le formulaire ci-dessous</h2>
+            <h2 class="col-lg-12">Renvoyez les fiches remplies et signées via le formulaire ci-dessous</h2>
     </div>
 </div>
 <div class="container-fluid">

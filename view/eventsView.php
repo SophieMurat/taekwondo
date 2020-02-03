@@ -9,12 +9,12 @@
             <h2 class="post-title">
                 <?php echo htmlspecialchars($event->getTitle()) ?>
             </h2>
-            <h3 class="post-subtitle">
+            <p class="post-subtitle">
                 <?php echo $event->getContent() ?>
                 <br/>
-            </h3>
+            </p>
           </a>
-          <p class="post-meta">se déroulera le <?php echo htmlspecialchars($event->getDateEvent()) ?>
+          <p><i class="far fa-calendar-alt"></i><span class="badge badge-pill badge-info ml-1">Date: <?php echo htmlspecialchars($event->getDateEvent()) ?></span>
         </div>
       </div>
     </div>
