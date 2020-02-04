@@ -1,6 +1,7 @@
 <?php ob_start(); ?>
-<div class="container-fluid mt-3">
-  <div class="row justify-content-center">
+<h1 class="mt-5 text-center">Gestion des catégories</h1>
+<div class="container">
+  <div class="row jumbotron justify-content-around">
     <div class="col-lg-4 bg-dark rounded px-4">
     <h4 class="text-center text-light p-1">Ajouter une nouvelle catégorie</h4>
     <form action="createCategory" method="post">
@@ -16,8 +17,6 @@
       </div>
     </form>
     </div>
-  </div>
-  <div class="row justify-content-center mt-5" id="list">
     <div class="col-lg-4 bg-dark rounded px-4">
         <h4 class="text-center text-light p-1">Liste des catégories</h4>
         <?php foreach($categories as $category):?>
@@ -28,6 +27,9 @@
         </ul>
         <?php endforeach;?>
     </div>
+  </div>
+  <div class="row justify-content-center">
+      <a class="btn btn-success" href="addInscriptionFileChoice" role="button">Retour à la gestion des fichiers</a>
   </div>
 </div>
 

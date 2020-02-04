@@ -1,8 +1,9 @@
 <?php ob_start(); ?>
-<div class="container-fluid">
+<h1 class="mt-5 text-center">Gestion des images pour le slider</h1>
+<div class="container">
   <div class="row jumbotron justify-content-center">
     <div class="col-lg-4 bg-dark rounded px-4">
-    <h4 class="text-center text-light p-1">Choisissez une image à ajouter</h4>
+    <h4 class="text-center text-light p-1">Envoyer une nouvelle image</h4>
     <form action="addImage" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <input type="text" name="title" class="form-control p-1" placeholder="Veuillez indiquer le titre de l'image" required>

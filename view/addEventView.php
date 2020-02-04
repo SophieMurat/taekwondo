@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
- 
+<h1 class="mt-3 text-center">Créer un nouvel évènement</h1>
 <article>
     <div class="container">
       <div class="row jumbotron text-center font-weight-bold">
@@ -30,7 +30,9 @@
       </div>
     </div>
 </article>
-
+<div class="row justify-content-center">
+      <a class="btn btn-success" href="eventManagement" role="button">Retour à la gestion des évènements</a>
+  </div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

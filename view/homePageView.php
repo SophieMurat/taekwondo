@@ -49,28 +49,29 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
 <div class="container">
   <div class="jumbotron row text-center">
     <h1 class="col-lg-12">Informations sur les cours</h1>
-    <nav id="courses" class="navbar navbar-light bg-light mx-auto">
+    <nav class="navbar bg-dark navbar-toggler mx-auto">
     <ul class="nav nav-pills col-lg-12">
       <li class="nav-item">
-        <a class="nav-link" href="index.php#jeune">3/4ans</a>
+        <a class="nav-link text-light" href="index.php#jeune">3/4ans</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php#enfant5">5/6ans</a>
+        <a class="nav-link text-light" href="index.php#enfant5">5/6ans</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php#enfant7">7/8ans</a>
+        <a class="nav-link text-light" href="index.php#enfant7">7/8ans</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php#enfant9">9/12ans</a>
+        <a class="nav-link text-light" href="index.php#enfant9">9/12ans</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php#enfant13">13/16ans</a>
+        <a class="nav-link text-light" href="index.php#enfant13">13/16ans</a>
       </li>
       <li class="nav-item" id="jeune">
-        <a class="nav-link" href="index.php#adultes">+ de 16ans</a>
+        <a class="nav-link text-light" href="index.php#adultes">+ de 16ans</a>
       </li>
     </ul>
     </nav>

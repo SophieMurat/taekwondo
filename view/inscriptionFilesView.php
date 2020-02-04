@@ -1,9 +1,9 @@
 <?php ob_start(); ?>
-
-<div class="container-fluid">
+<h1 class="mt-5 text-center">Gestion des fichiers d'inscription</h1>
+<div class="container">
     <div class="row jumbotron justify-content-center">
         <div class="col-lg-4 bg-dark rounded px-4">
-            <h4 class="text-center text-light p-1">Envoyer une fiche d'inscription</h4>
+            <h4 class="text-center text-light p-1">Envoyer un nouveau document</h4>
             <form action="addInscriptionFile" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="fileName" class="form-control p-1" placeholder="Nom du fichier" required>
@@ -27,7 +27,7 @@
         <h1 class="col-lg-12 mb-4">Fichiers renvoyés par les adhérents</h1>
         <div class="col-lg-4 bg-dark rounded px-4">
             <h4 class="text-center text-light p-1">Choix du type de fichier</h4>
-            <form action="addInscriptionFileChoice" method="post">
+            <form action="addInscriptionFileChoice#comment_table" method="post">
                 <div class="form-group">
                     <select name="category" class="form-control p-1" id="category">
                         <?php while ($category=$categories->fetch()):?>
@@ -48,7 +48,7 @@
             <?php 
     if(isset($_POST['fileCategory'])):?>
         <div id="comment_table" class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="file_adherent">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -67,7 +67,15 @@
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_city()) ?></td>
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getSentDate()) ?></td>
                 <td class="non_responsive"><a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a></td>
-                <td class="non_responsive"><a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a></td>                
+                <td class="non_responsive"><a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a></td>
+                <td class="text-center" id="file_responsive">
+                    <p><u>Nom</u>: <?php echo htmlspecialchars($data->getAdherent_name()) ?> </p>
+                    <p><u>Prénom</u>: <?php echo htmlspecialchars($data->getAdherent_firstname())?></p>
+                    <p><u>Lieu de résidence</u>: <?php echo htmlspecialchars($data->getAdherent_city()) ?></p>
+                    <p>Envoyé le <?php echo htmlspecialchars($data->getSentDate()) ?></p>
+                    <a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a>
+                    <a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a>
+                </td>
             </tr>
         <?php
         endforeach;

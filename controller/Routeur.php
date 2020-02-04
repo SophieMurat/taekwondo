@@ -62,6 +62,8 @@ class Routeur {
                         $this->BackendController->addEvent();
                     elseif ($_GET['action'] == 'allEvents'):
                         $this->BackendController->getAllEvents();
+                    elseif ($_GET['action'] == 'event'):
+                        $this->BackendController->getEvent();
                     elseif ($_GET['action'] == 'deleteEvent'):
                         $this->BackendController->deleteEvent();
                     elseif ($_GET['action'] == 'modifyEvent'):

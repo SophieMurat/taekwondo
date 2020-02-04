@@ -1,5 +1,6 @@
 <?php ob_start(); ?>
-<div class="container">
+<div class="container text-center">
+    <h1 class="mt-3">Ajouter un nouvel administrateur</h1>
     <div class="row jumbotron text-center font-weight-bold">
       <div class="col-lg-8 col-md-10 mx-auto">
         <form action="adminCreate#createAccountError" name="adminAccount" id="contactForm" method="post">

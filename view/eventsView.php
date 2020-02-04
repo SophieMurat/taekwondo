@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<h1 class="mt-5 text-center">Evènements à venir!</h1>
 <div class="container">
       <?php
       foreach($events as $event):

@@ -35,7 +35,7 @@ class EventsManager extends Manager
      */
     public function getAllEvents()
     {
-        $req = $this->db->query("SELECT id, title, content, 
+        $req = $this->db->query("SELECT id, title, 
        DATE_FORMAT(event_date,'%d/%m/%Y') AS dateEvent FROM events ORDER BY STR_TO_DATE(dateEvent,'%d/%m/%Y')
         DESC");
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 
@@ -54,7 +54,8 @@ class EventsManager extends Manager
      * Get one Event
      */
     public function getEvent($eventId){
-        $req = $this->db->prepare("SELECT id, title,content,event_date FROM events
+        $req = $this->db->prepare("SELECT id, title,content,event_date,DATE_FORMAT(event_date,'%d/%m/%Y') 
+        AS dateEvent FROM events
         WHERE id=? ");
         $req->execute(array($eventId));
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 

@@ -316,9 +316,28 @@ class BackendController
             }
         }
         else {
-            $this->msg='Aucun identifiant d_évènement envoyé';
+            $this->msg='Aucun identifiant d\'évènement envoyé';
             require('view/errorView.php');
         }   
+    }
+    /**
+     * Open one event
+     */
+    public function getEvent(){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $event = $this->eventsManager->getEvent($_GET['id']);
+            if($event === false){
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/allEvents');
+            }
+            else{
+                require('view/EventView.php');
+            }
+        }
+        else {
+            $this->msg='Aucun identifiant d\'évènement envoyé';
+            require('view/errorView.php');
+        }  
     }
     /**
      * Upade an Event
