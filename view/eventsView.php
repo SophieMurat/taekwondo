@@ -23,8 +23,12 @@
 endforeach;
 ?>
 <div>
-    <?php if ($currentPage >1): ?>
-      <a href="events/<?php echo $currentPage -1 ?>"><button class="btn btn-primary">&laquo; Page précédente</button></a>
+    <?php if ($currentPage >1): 
+            if($currentPage === "2"):?>
+            <a href="events"><button class="btn btn-primary">&laquo; Page précédente</button></a>
+            <?php else: ?>
+            <a href="events/<?php echo $currentPage -1 ?>"><button class="btn btn-primary">&laquo; Page précédente</button></a>
+            <?php endif ?>
     <?php endif ?>
     <?php if ($currentPage <$pages): ?>
       <a href="events/<?php echo $currentPage +1 ?>"><button class="btn btn-primary">Page suivante &raquo;</button></a>

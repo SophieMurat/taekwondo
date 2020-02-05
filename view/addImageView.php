@@ -16,7 +16,7 @@
         value="Télécharger l'image">
       </div>
       <div class="form-group">
-        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
+        <h5 class="text-center text-danger"><?php echo $this->msg; ?></h5>
       </div>
     </form>
     </div>

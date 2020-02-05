@@ -41,36 +41,42 @@ class FrontendController
      * Send the filled inscription files
      */
     public function sendInscriptionFile(){
-        if(!empty($_FILES)):
-            $temporaryPath= $_FILES['adherent_file']['tmp_name'];
-            $fileName= $_FILES['adherent_file']['name'];
-            $finalPath= 'public/adherent_files/'.$fileName;
-            $fileExtension= strrchr($fileName, ".");
-            $extensionAllowed= array('.pdf', '.PDF');
-            $maxSize = 2000000;
-            $size = ($_FILES['adherent_file']['size']);
-            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $movePath= move_uploaded_file($temporaryPath,$finalPath);
-                if($movePath):
-                    $file= new FileAdherent(array(
-                        'adherent_name'=>$_POST['name'],
-                        'adherent_firstname'=>$_POST['firstname'],
-                        'adherent_city'=>$_POST['city'],
-                        'adherent_fileName'=>$_FILES['adherent_file']['name']
-                    ));
-                    $uploadedFile=$this->filesManager->uploadAdherentFile($file,$finalPath,$_POST['category']);
-                    $this->msg =' le fichier a bien été chargé';;
-                else :
-                    $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
+        if(isset($_POST['upload'])):
+            if(!empty($_FILES)&&!empty($_POST['city'])&&!empty($_POST['name'])&&!empty($_POST['firstname'])
+            &&strlen(trim($_POST['name']))&&strlen(trim($_POST['firstname']))):
+                $temporaryPath= $_FILES['adherent_file']['tmp_name'];
+                $fileName= $_FILES['adherent_file']['name'];
+                $temp=explode(".",$fileName);
+                $newName=round(microtime(true)).'.'.end($temp);
+                $finalPath= 'public/adherent_files/'.$newName;
+                $fileExtension= strrchr($newName, ".");
+                $extensionAllowed= array('.pdf', '.PDF');
+                $maxSize = 2000000;
+                $size = ($_FILES['adherent_file']['size']);
+                if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
+                    $movePath= move_uploaded_file($temporaryPath,$finalPath);
+                    if($movePath):
+                        $file= new FileAdherent(array(
+                            'adherent_name'=>$_POST['name'],
+                            'adherent_firstname'=>$_POST['firstname'],
+                            'adherent_city'=>$_POST['city'],
+                            'adherent_fileName'=>$newName
+                        ));
+                        $uploadedFile=$this->filesManager->uploadAdherentFile($file,$finalPath,$_POST['category']);
+                        $this->msg =' Le fichier a bien été chargé';;
+                    else :
+                        $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
+                    endif;
+                elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
+                    $this->msg='Le fichier ne doit pas faire plus de 2Mo';
+                else:
+                    $this->msg= 'Seuls les fichiers PDF sont autorisés.';
                 endif;
-            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
-                $this->msg='Le fichier ne doit pas faire plus de 2Mo';
             else:
-                $this->msg= 'Seuls les fichiers PDF sont autorisés.';
+                $this->msg='Veuillez bien remplir tous les champs';
             endif;
-            header('Location:/p5/taekwondo/informations');
         endif;
-        header('Location:/p5/taekwondo/informations');
+        $this->informations();
     }
     /**
      * Load error page

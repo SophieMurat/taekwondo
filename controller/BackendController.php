@@ -34,33 +34,38 @@ class BackendController
      */
     public function addImage(){
         $slides=$this->sliderManager->getAllSlides();
-        if (isset($_POST['upload'])):
-            $image = $_FILES['image']['name'];
-            $title= $_POST['title'];
-            $temp = explode(".", $image);
-            $imageName=round(microtime(true)). '.'. end($temp);
-            $path ='public/img/'.$imageName;
-            $fileExtension= strrchr($imageName, ".");
-            $extensionAllowed= array('.png', '.jpg', '.jpeg');
-            $maxSize = 2000000;
-            $size = ($_FILES['image']['size']);
-            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $slide=new Slide(array(
-                    'image_title'=>$_POST['title'],
-                    'image_path'=>'public/img/'.$imageName
-                ));
-                $newSlide= $this->sliderManager->addOneImage($slide);
-                $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
-                if($movePath):
-                    header('Location:/p5/taekwondo/addImage');
+        if(isset($_POST['upload'])):
+            if (isset($_POST['upload'])&& isset($_POST['title'])&& strlen(trim($_POST['title']))):
+                $image = $_FILES['image']['name'];
+                $title= $_POST['title'];
+                $temp = explode(".", $image);
+                $imageName=round(microtime(true)). '.'. end($temp);
+                $path ='public/img/'.$imageName;
+                $fileExtension= strrchr($imageName, ".");
+                $extensionAllowed= array('.png', '.jpg', '.jpeg');
+                $maxSize = 2000000;
+                $size = ($_FILES['image']['size']);
+                if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
+                    $slide=new Slide(array(
+                        'image_title'=>$_POST['title'],
+                        'image_path'=>'public/img/'.$imageName
+                    ));
+                    $newSlide= $this->sliderManager->addOneImage($slide);
+                    $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
+                    if($movePath):
+                        header('Location:/p5/taekwondo/addImage');
+                    else:
+                        $this->msg = 'erreur lors de l\'ajout de l\'image';
+                    endif;
+                elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
+                    $this->msg='L\'image ne doit pas faire plus de 2Mo';
                 else:
-                    $this->msg = 'erreur lors de l\'ajout de l\'image';
+                    $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
                 endif;
-            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
-                $this->msg='L\'image ne doit pas faire plus de 2Mo';
             else:
-                $this->msg= 'Seuls les images au format jpg,jpeg et png sont autorisées';
+                $this->msg='Veuillez indiquer un titre pour votre image';
             endif;
+        require('view/addImageView.php');
         endif;
         require('view/addImageView.php');
     }
@@ -68,11 +73,22 @@ class BackendController
      * Delete a slide
      */
     public function deleteSlide(){
-        $slide= new Slide(array(
-            'id'=>$_GET['id']
-        ));
-        $deletedSlide=$this->sliderManager->deleteSlide($slide);
-        header('Location:/p5/taekwondo/addImage');
+        if (isset($_GET['id']) && $_GET['id'] > 0):
+            $slide= new Slide(array(
+                'id'=>$_GET['id']
+            ));
+            $deletedSlide=$this->sliderManager->deleteSlide($slide);
+            if($deletedSlide === false):
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/errorView');
+            else:
+                //unlink ($deletedSlide->getImage_path());
+                header('Location:/p5/taekwondo/addImage');
+            endif;
+        else:
+            $this->msg='Aucun identifiant d\'image envoyé';
+            require('view/errorView.php');
+        endif;
     }
     /**
      * Choose to add an inscription File and see the signed inscription files
@@ -88,44 +104,60 @@ class BackendController
      * Delete an adherent file
      */
     public function deleteAdherentFile(){
-        $categories=$this->filesManager->chooseCategory();
-        $file= new FileAdherent(array(
-            'id'=>$_GET['id']
-        ));
-        $deletedFile=$this->filesManager->deleteAdherentFile($file);
-        require('view/inscriptionFilesView.php');
+        if (isset($_GET['id']) && $_GET['id'] > 0):
+            $categories=$this->filesManager->chooseCategory();
+            $file= new FileAdherent(array(
+                'id'=>$_GET['id']
+            ));
+            $deletedFile=$this->filesManager->deleteAdherentFile($file);
+            if($deletedFile === false):
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/errorView');
+            else:
+                require('view/inscriptionFilesView.php');
+            endif;
+        else:
+            $this->msg='Aucun identifiant de fichier envoyé';
+            require('view/errorView.php');
+        endif;
     }
     /***
      * Add an inscription file from the admin part
      */
     public function addInscriptionFile(){
-        if(!empty($_FILES)):
-            $temporaryPath= $_FILES['pdf_file']['tmp_name'];
-            $file_name= $_FILES['pdf_file']['name'];
-            $finalPath = 'public/admin_files/'.$file_name;
-            $fileExtension = strrchr($file_name, ".");
-            $extensionAllowed = array('.pdf', '.PDF');
-            $maxSize = 2000000;
-            $size = ($_FILES['pdf_file']['size']);
-            if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
-                $file= new FileAdmin(array(
-                    'name_file'=>$_FILES['pdf_file']['name'],
-                    'file_url'=>'public/admin_files/'.$_FILES['pdf_file']['name'],
-                    'Title_file'=>$_POST['fileName']
-                ));
-                $newFile= $this->filesManager->addAdminFile($file);
-                $path=move_uploaded_file($temporaryPath,$finalPath);
-                if($path):
-                    move_uploaded_file($temporaryPath,$finalPath);
-                    $this->msg =' Le fichier a bien été envoyé';
+        if(isset($_POST['upload'])):
+            if(!empty($_FILES)&& !empty($_POST['fileName'])&&strlen(trim($_POST['fileName']))):
+                $temporaryPath= $_FILES['pdf_file']['tmp_name'];
+                $file_name= $_FILES['pdf_file']['name'];
+                $temp=explode(".",$file_name);
+                $fileName=round(microtime(true)).'.'.end($temp);
+                $finalPath = 'public/admin_files/'.$fileName;
+                $fileExtension = strrchr($fileName, ".");
+                $extensionAllowed = array('.pdf', '.PDF');
+                $maxSize = 2000000;
+                $size = ($_FILES['pdf_file']['size']);
+                if(in_array($fileExtension,$extensionAllowed) && $size<$maxSize && $size!==0):
+                    $file= new FileAdmin(array(
+                        'name_file'=>$_FILES['pdf_file']['name'],
+                        'file_url'=>'public/admin_files/'.$fileName,
+                        'Title_file'=>$_POST['fileName']
+                    ));
+                    $newFile= $this->filesManager->addAdminFile($file);
+                    $path=move_uploaded_file($temporaryPath,$finalPath);
+                    if($path):
+                        move_uploaded_file($temporaryPath,$finalPath);
+                        $this->msg =' Le fichier a bien été envoyé';
+                    else:
+                        $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
+                    endif;
+                elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
+                    $this->msg='Le fichier ne doit pas faire plus de 2Mo';
                 else:
-                    $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
+                        $this->msg= 'Seuls les fichiers PDF sont autorisés.';
                 endif;
-            elseif(in_array($fileExtension,$extensionAllowed) && $size>$maxSize || $size ==0):
-                $this->msg='Le fichier ne doit pas faire plus de 2Mo';
             else:
-                    $this->msg= 'Seuls les fichiers PDF sont autorisés.';
-            endif;
+                $this->msg= 'Veuillez indiquer le nom de votre fichier';
+            endif; 
         endif;
         $this->addInscriptionFileChoice();
     }
@@ -227,18 +259,21 @@ class BackendController
      */
     public function deleteCategory(){
         $categories=$this->filesManager->chooseCategory();
-        $category= new Category(array(
-            'id'=>$_GET['id']
-        ));
-        $deleted=$this->filesManager->deleteCategory($category);
-        header('Location:/p5/taekwondo/createCategory');
-    }
-    /**
-     * Open the modify ImageView with its form
-     */
-    public function modifyImage(){
-        $imageModify=$this->sliderManager->getOneSlide($_GET['id']);
-        require('view/modifyImageView.php');
+        if (isset($_GET['id']) && $_GET['id'] > 0):
+            $category= new Category(array(
+                'id'=>$_GET['id']
+            ));
+            $deleted=$this->filesManager->deleteCategory($category);
+            if($deleted === false):
+                header("HTTP:1.0 404 Not Found");
+                header('Location:/p5/taekwondo/errorView');
+            else:
+                header('Location:/p5/taekwondo/createCategory');
+            endif;
+        else:
+            $this->msg='Aucun identifiant de catégorie envoyé';
+            require('view/errorView.php');
+        endif;
     }
     /**
      * Open the event management part
@@ -268,7 +303,7 @@ class BackendController
                 $this->msg='Impossible d\'ajouter l\'évènement!';
             else:
                 $this->error=true;
-                $this->msg='L\'évènement a bien été crée';
+                $this->msg='L\'évènement a bien été créé';
             endif;
         else:
             $this->error=true;
@@ -289,10 +324,10 @@ class BackendController
     public function deleteEvent(){
         if (isset($_GET['id']) && $_GET['id'] > 0):
             $deletedEvent=new Event(array('id'=>$_GET['id']));
-            $event = $this->eventsManager->eventDelete($deletedEvent);
+            $event =$this->eventsManager->eventDelete($deletedEvent);
             if($event === false):
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/allEvents');
+                header('Location:/p5/taekwondo/errorView');
             else:
                 header('Location:/p5/taekwondo/allEvents');
             endif;
@@ -309,7 +344,7 @@ class BackendController
             $event = $this->eventsManager->getEvent($_GET['id']);
             if($event === false){
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/allEvents');
+                header('Location:/p5/taekwondo/errorView');
             }
             else{
                 require('view/updateEventView.php');

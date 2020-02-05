@@ -76,6 +76,6 @@ class FilesManager extends Manager
     */
     public function deleteCategory(Category $category){
         $req =$this->db->prepare('DELETE FROM p5_files_category WHERE id=?');
-        $req->execute(array($category->getID()));
+        $req->execute(array($category->getId()));
     }
 }

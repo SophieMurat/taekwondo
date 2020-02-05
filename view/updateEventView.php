@@ -2,13 +2,16 @@
  
 <article>
     <div class="container">
+    <div class="row justify-content-center mt-2">
+      <a class="btn btn-success" href="allEvents" role="button">Retour à la liste des évènments</a>
+    </div>
       <div class="row jumbotron text-center font-weight-bold">
         <div class="col-lg-8 col-md-10 mx-auto">
             <form action="updateEvent/<?php echo $event->getId() ?>" name="updateEvent" method="post" novalidate>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                     <label>Titre</label>
-                    <input type="text" class="form-control" name="title" value="<?php echo $event->getTitle() ?>" id="title" required>
+                    <input type="text" class="form-control" name="title" value="<?php echo htmlspecialchars($event->getTitle()) ?>" id="title" required>
                     </div>
                 </div>
                 <div class="control-group">

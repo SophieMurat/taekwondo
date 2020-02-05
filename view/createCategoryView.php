@@ -21,7 +21,7 @@
         <h4 class="text-center text-light p-1">Liste des catégories</h4>
         <?php foreach($categories as $category):?>
             <ul>
-                <li class="text-light d-flex justify-content-between"><?php echo $category->getCategory_name()?>
+                <li class="text-light d-flex justify-content-between"><?php echo htmlspecialchars($category->getCategory_name())?>
                     <a class="btn btn-warning" href="deleteCategory/<?php echo $category->getId() ?>" role="button">Supprimer</a>
                 </li>
         </ul>

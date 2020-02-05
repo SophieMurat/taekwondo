@@ -8,7 +8,7 @@
             <?php
             while($data = $inscriptionFiles->fetch()):
             ?>
-                <li><a href ="<?php echo $data->getFile_url()?>"><?php echo $data->getTitle_file()?></a></li>
+                <li><a href ="<?php echo $data->getFile_url()?>"><?php echo htmlspecialchars($data->getTitle_file())?></a></li>
             <?php 
             endwhile;
             $inscriptionFiles->closeCursor();
@@ -17,16 +17,16 @@
             <h2 class="col-lg-12">Renvoyez les fiches remplies et signées via le formulaire ci-dessous</h2>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container jumbotron">
         <div class="row justify-content-center">
             <div class="col-lg-4 bg-dark rounded px-4">
             <h4 class="text-center text-light p-1">Renvoyer la fiche d'inscription signée</h4>
-                <form action="sendInscriptionFile" method="post" enctype="multipart/form-data">
+                <form action="sendInscriptionFile#adherentFile" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control p-1" placeholder="Nom de l'inscrit" required>
+                        <input type="text" name="name" class="form-control p-1" placeholder="Nom de l'inscrit" pattern="[a-zA-ZÀ-ÿ-]+" title="Lettres et '-' acceptés">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="firstname" class="form-control p-1" placeholder="Prénom de l'inscrit" required>
+                        <input type="text" name="firstname" class="form-control p-1" placeholder="Prénom de l'inscrit" pattern="[a-zA-ZÀ-ÿ-]+" title="Lettres et '-' acceptés">
                     </div>
                     <div class="form-group">
                         <input type="text" name="zipcode" class="form-control" placeholder="Code postal" id="zipcode">
@@ -40,7 +40,7 @@
                             <select name="category" class="form-control p-1" id="category">
                                 <?php while ($category=$categories->fetch()):?>
                                 <option
-                                value="<?php echo $category->getId()?>"><?php echo $category->getCategory_name()?></option>
+                                value="<?php echo $category->getId()?>"><?php echo htmlspecialchars($category->getCategory_name())?></option>
                                 <?php endwhile; ?>
                             </select>
                         </label>
@@ -53,7 +53,7 @@
                         value="Envoyer le fichier">
                     </div>
                     <div class="form-group">
-                        <h5 class="text-center text-light"><?php echo $this->msg; ?></h5>
+                        <h5 class="text-center text-danger" id="adherentFile"><?php echo $this->msg; ?></h5>
                     </div>
                 </form>
             </div>

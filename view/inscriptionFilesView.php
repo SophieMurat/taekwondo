@@ -34,7 +34,7 @@
                             <option <?php if(isset($_POST['fileCategory'])):
                                 if($category->getId() == $_POST['category']) echo "selected='selected'"; 
                             endif;?>
-                            value="<?php echo $category->getId()?>"><?php echo $category->getCategory_name()?>
+                            value="<?php echo $category->getId()?>"><?php echo htmlspecialchars($category->getCategory_name())?>
                             </option>
                         <?php endwhile;?>
                     </select>
