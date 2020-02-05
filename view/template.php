@@ -79,6 +79,17 @@
     </nav>
 
 <?php echo $content ?>
+<!-- Footer -->
+<footer class="row text-center justify-content-center mw-100">
+    <div class="mb-2">
+      <a class="btn btn-light mr-1" href="#"><i class="fab fa-twitter fa-2x"></i></a>
+      <a class="btn btn-light mr-1" href="#"><i class="fab fa-facebook fa-2x"></i></a>
+      <a class="btn btn-light mr-1" href="#"><i class="fab fa-google-plus fa-2x"></i></a>
+      <a class="btn btn-light mr-1" href="#"><i class="fab fa-flickr fa-2x"></i></a>
+      <a class="btn btn-light mr-1" href="#"><i class="fab fa-spotify fa-2x"></i></a>
+      <p class="copyright text-muted">Copyright &copy; Taekwondo Les Ulis 2020</p>
+    </div>
+</footer>
     <!-- Optional JavaScript -->
 
     <script src="public/js/city.js"></script>

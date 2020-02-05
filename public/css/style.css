@@ -34,7 +34,16 @@ button #confirm .inactive{
 #file_responsive, #events_responsive{
     display:none;
 }
+/*--Media queries--*/
+@media screen and (max-width:1024px){
+    .carousel-item{
+        max-height: 425px !important;
+    }
+}
 @media screen and (max-width:768px){
+    .carousel-item{
+        max-height: 350px !important;
+    }
     #file_adherent tr, #events_table tr{
       display:flex;
       flex-direction: column;
@@ -48,5 +57,28 @@ button #confirm .inactive{
     }
     .non_responsive{
         display:none;
+    }
+}
+@media screen and (max-width:575px){
+    .carousel-item{
+        max-height: 275px !important;
+    }
+}
+@media screen and (max-width:425px){
+    .carousel-item{
+        max-height: 210px !important;
+    }
+    footer{
+        margin:0 !important;
+    }
+}
+@media screen and (max-width:375px){
+    .carousel-item{
+        max-height: 180px !important;
+    }
+}
+@media screen and (max-width:320px){
+    .carousel-item{
+        max-height: 160px !important;
     }
 }
