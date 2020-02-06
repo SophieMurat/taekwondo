@@ -8,8 +8,8 @@ class FileAdherent extends Entity
     private $adherent_name;
     private $adherent_firstname;
     private $adherent_city;
-    private $adherent_fileName;
-    private $adherent_fileUrl;
+    private $adherent_file_name;
+    private $adherent_file_url;
     private $upload_date;
     private $category_id;
     private $sentDate;
@@ -28,11 +28,11 @@ class FileAdherent extends Entity
     public function getAdherent_city(){
         return $this->adherent_city;
     }
-    public function getAdherent_fileName(){
-        return $this->adherent_fileName;
+    public function getAdherent_file_name(){
+        return $this->adherent_file_name;
     }
-    public function getAdherent_fileUrl(){
-        return $this->adherent_fileUrl;
+    public function getAdherent_file_url(){
+        return $this->adherent_file_url;
     }
     public function getUpload_date(){
         return $this->upload_date;
@@ -70,16 +70,16 @@ class FileAdherent extends Entity
               $this->adherent_city=$adherent_city;
           endif;
       }
-      public function setAdherent_fileName($adherent_fileName)
+      public function setAdherent_file_name($adherent_file_name)
       {
-          if(is_string($adherent_fileName)):
-              $this->adherent_fileName=$adherent_fileName;
+          if(is_string($adherent_file_name)):
+              $this->adherent_file_name=$adherent_file_name;
           endif;
       }
-      public function setAdherent_fileUrl($adherent_fileUrl)
+      public function setAdherent_file_url($adherent_file_url)
       {
-          if(is_string($adherent_fileUrl)):
-              $this->adherent_fileUrl=$adherent_fileUrl;
+          if(is_string($adherent_file_url)):
+              $this->adherent_file_url=$adherent_file_url;
           endif;
       }
 }

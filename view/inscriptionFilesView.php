@@ -66,14 +66,14 @@
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_firstname()) ?></td>
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getAdherent_city()) ?></td>
                 <td class="non_responsive"><?php echo htmlspecialchars($data->getSentDate()) ?></td>
-                <td class="non_responsive"><a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a></td>
+                <td class="non_responsive"><a href ="<?php echo $data->getAdherent_file_url() ?>">Télécharger</a></td>
                 <td class="non_responsive"><a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a></td>
                 <td class="text-center" id="file_responsive">
                     <p><u>Nom</u>: <?php echo htmlspecialchars($data->getAdherent_name()) ?> </p>
                     <p><u>Prénom</u>: <?php echo htmlspecialchars($data->getAdherent_firstname())?></p>
                     <p><u>Lieu de résidence</u>: <?php echo htmlspecialchars($data->getAdherent_city()) ?></p>
                     <p>Envoyé le <?php echo htmlspecialchars($data->getSentDate()) ?></p>
-                    <a href ="<?php echo $data->getAdherent_fileUrl() ?>">Télécharger</a>
+                    <a href ="<?php echo $data->getAdherent_file_url() ?>">Télécharger</a>
                     <a href ="deleteAdherentFile/<?php echo $data->getId() ?>">Supprimer</a>
                 </td>
             </tr>

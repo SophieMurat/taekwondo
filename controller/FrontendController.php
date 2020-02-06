@@ -60,7 +60,7 @@ class FrontendController
                             'adherent_name'=>$_POST['name'],
                             'adherent_firstname'=>$_POST['firstname'],
                             'adherent_city'=>$_POST['city'],
-                            'adherent_fileName'=>$newName
+                            'adherent_file_name'=>$newName
                         ));
                         $uploadedFile=$this->filesManager->uploadAdherentFile($file,$finalPath,$_POST['category']);
                         $this->msg =' Le fichier a bien été chargé';;

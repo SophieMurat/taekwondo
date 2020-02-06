@@ -25,10 +25,10 @@ class FilesManager extends Manager
      */
     public function uploadAdherentFile(FileAdherent $file,$finalPath,$categorie){
         $req = $this->db->prepare('INSERT INTO p5_adherent_files(adherent_name,
-        adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl,upload_date,category_id) 
+        adherent_firstname,adherent_city,adherent_file_name,adherent_file_url,upload_date,category_id) 
                     VALUES (?,?,?,?,?,NOW(),?)');
         $req->execute(array($file->getAdherent_name(),$file->getAdherent_firstname(),$file->getAdherent_city(),
-        $file->getAdherent_fileName(),$finalPath,$categorie));
+        $file->getAdherent_file_name(),$finalPath,$categorie));
 
     }
     /**
@@ -45,7 +45,7 @@ class FilesManager extends Manager
      */
     public function signedFiles($categoryFile){
         $req = $this->db->prepare("SELECT id,adherent_name,
-        adherent_firstname,adherent_city,adherent_fileName,adherent_fileUrl, 
+        adherent_firstname,adherent_city,adherent_file_name,adherent_file_url, 
         DATE_FORMAT(upload_date,GET_FORMAT(DATE, 'EUR')) 
         AS sentDate ,category_id 
         FROM p5_adherent_files 
