@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<div class="container">
+<div class="container mb-5">
     <div class="jumbotron row text-center">
       <div class="col-lg-8 col-md-10 mx-auto">
           <h1 class="col-lg12">Administrateur</h1>
@@ -16,7 +16,6 @@
                 </div>
             </div>
             <br>
-            <div id="success"></div>
             <div class="form-group">
                 <button type="submit" name ="submit" class="btn btn-primary" id="sendMessageButton">Se connecter</button>
             </div>
@@ -24,6 +23,9 @@
         <?php if ($this->error): ?>
         <p class="alert alert-danger" id="errorLogin"><?php echo $this->msg ?></p>
         <?php endif ?>
+       </div>
+    </div>
+</div> 
 
 <?php $content = ob_get_clean(); ?>
 

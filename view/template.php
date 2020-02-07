@@ -80,6 +80,7 @@
 
 <?php echo $content ?>
 <!-- Footer -->
+<?php if(!$_SESSION):?>
 <footer class="row text-center justify-content-center mw-100">
     <div class="mb-2">
       <a class="btn btn-light mr-1" href="#"><i class="fab fa-twitter fa-2x"></i></a>
@@ -90,6 +91,7 @@
       <p class="copyright text-muted">Copyright &copy; Taekwondo Les Ulis 2020</p>
     </div>
 </footer>
+<?php endif; ?>
     <!-- Optional JavaScript -->
 
     <script src="public/js/city.js"></script>
