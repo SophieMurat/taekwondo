@@ -13,7 +13,10 @@ use taekwondo\model\Category;
 use taekwondo\model\Slide;
 use taekwondo\model\FileAdherent;
 
-
+/**
+ * Class BackendController
+ * Manage all the functions of the admin part
+ */
 class BackendController
 {
     public $msg= "";
@@ -80,7 +83,7 @@ class BackendController
             $deletedSlide=$this->sliderManager->deleteSlide($slide);
             if($deletedSlide === false):
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/errorView');
+                throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
                 //unlink ($deletedSlide->getImage_path());
                 header('Location:/p5/taekwondo/addImage');
@@ -112,7 +115,7 @@ class BackendController
             $deletedFile=$this->filesManager->deleteAdherentFile($file);
             if($deletedFile === false):
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/errorView');
+                throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
                 require('view/inscriptionFilesView.php');
             endif;
@@ -266,7 +269,7 @@ class BackendController
             $deleted=$this->filesManager->deleteCategory($category);
             if($deleted === false):
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/errorView');
+                throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
                 header('Location:/p5/taekwondo/createCategory');
             endif;
@@ -327,7 +330,7 @@ class BackendController
             $event =$this->eventsManager->eventDelete($deletedEvent);
             if($event === false):
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/errorView');
+                throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
                 header('Location:/p5/taekwondo/allEvents');
             endif;
@@ -363,7 +366,7 @@ class BackendController
             $event = $this->eventsManager->getEvent($_GET['id']);
             if($event === false){
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/allEvents');
+                throw new \Exception('Erreur veuillez contacter votre developpeur!');
             }
             else{
                 require('view/EventView.php');

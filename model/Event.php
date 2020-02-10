@@ -1,6 +1,9 @@
 <?php
 
 namespace taekwondo\model;
+/**
+ * Class managing everyting concerning the events
+ */
 
 class Event extends Entity
 {

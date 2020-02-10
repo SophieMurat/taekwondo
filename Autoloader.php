@@ -1,6 +1,9 @@
 <?php
 
 namespace taekwondo;
+/**
+ * Class Autoloader that allow the automatic charging of all the classes
+ */
 
 class Autoloader {
     /**

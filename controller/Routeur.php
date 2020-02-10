@@ -42,8 +42,6 @@ class Routeur {
                         $this->BackendController->addInscriptionFile();
                     elseif ($_GET['action'] == 'admin'):
                         $this->BackendController->admin();
-                    elseif ($_GET['action'] == 'getSignedFiles'):
-                        $this->BackendController->getsignedFiles();
                     elseif ($_GET['action'] == 'deleteAdherentFile'):
                         $this->BackendController->deleteAdherentFile();
                     elseif ($_GET['action'] == 'adminCreate'):
@@ -80,8 +78,8 @@ class Routeur {
                 $this->FrontendController->slider();
             endif;
         }
-        catch (Exception $e) {
-            erreur($e->getMessage());
+        catch (\Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
         }
     }
 }

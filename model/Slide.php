@@ -2,13 +2,19 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class managing everyting concerning the slides for the slider
+ */
+
 class Slide extends Entity
 {
     private $id;
     private $image_title;
     private $image_path;
 
-    //getters
+    /**
+     * Getters list
+     */
     public function getId(){
         return $this->id;
     }
@@ -18,7 +24,9 @@ class Slide extends Entity
     public function getImage_path(){
         return $this->image_path;
     }
-    // setters
+    /**
+     * Setters list
+     */
     public function setId($id)
     {
           $id = (int)$id;

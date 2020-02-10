@@ -2,6 +2,10 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class managing everyting concerning the adherents files
+ */
+
 class FileAdherent extends Entity
 {
     private $id;
@@ -14,7 +18,9 @@ class FileAdherent extends Entity
     private $category_id;
     private $sentDate;
 
-    //liste des getters
+   /**
+    * Getters list
+    */
 
     public function getId(){
         return $this->id;
@@ -43,7 +49,9 @@ class FileAdherent extends Entity
     public function getSentDate(){
         return $this->sentDate;
     }
-      // liste des setters
+      /**
+       * Setters list
+       */
 
       public function setId($id)
       {

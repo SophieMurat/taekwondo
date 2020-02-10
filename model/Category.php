@@ -2,6 +2,10 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class managing everyting concerning the categories
+ */
+
 class Category extends Entity
 {
     private $id;

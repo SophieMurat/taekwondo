@@ -6,7 +6,10 @@ use taekwondo\model\SliderManager;
 use taekwondo\model\FilesManager;
 use taekwondo\model\EventsManager;
 use taekwondo\model\FileAdherent;
-
+/**
+ * Class FrontendController
+ * manage all the functions from the visitors side(front)
+ */
 
 class FrontendController
 {

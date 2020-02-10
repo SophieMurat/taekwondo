@@ -2,6 +2,10 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class managing everyting concerning the admins files
+ */
+
 class FileAdmin extends Entity
 {
     private $id;
@@ -9,7 +13,9 @@ class FileAdmin extends Entity
     private $file_url;
     private $title_file;
 
-    // liste des gettes
+    /**
+     * Getters list
+     */
     public function getId(){
         return $this->id;
     }
@@ -22,7 +28,9 @@ class FileAdmin extends Entity
     public function getTitle_file(){
         return $this->title_file;
     }
-    //liste des setters
+    /**
+     * Setters list
+     */
 
     public function setId($id)
     {

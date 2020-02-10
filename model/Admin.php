@@ -1,7 +1,9 @@
 <?php
 
 namespace taekwondo\model;
-
+/**
+ * Class managing everyting concerning the admins
+ */
 class Admin extends Entity
 {
     private $id;
