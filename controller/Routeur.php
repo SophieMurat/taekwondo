@@ -22,7 +22,7 @@ class Routeur {
      */
     public function routerRequete(){
         try{
-            if (isset($_GET['action'])):   
+            if (isset($_GET['action'])&&!empty($_GET['action'])):   
                 if ($_GET['action'] == 'slider'):
                     $this->FrontendController->slider();
                 elseif ($_GET['action'] == 'informations'):
