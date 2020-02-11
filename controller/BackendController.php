@@ -21,6 +21,7 @@ class BackendController
 {
     public $msg= "";
     public $error=false;
+    public $rootPath="/p5/taekwondo/";
     private $sliderManager;
     private $filesManager;
     private $eventsManager;
@@ -56,7 +57,7 @@ class BackendController
                     $newSlide= $this->sliderManager->addOneImage($slide);
                     $movePath=move_uploaded_file($_FILES['image']['tmp_name'], $path);// on recupère une image n'importe ou sur le pc et cela la range le fichier avec le path indiqué
                     if($movePath):
-                        header('Location:/p5/taekwondo/addImage');
+                        header('Location:'.$this->rootPath.'addImage#gallery');
                     else:
                         $this->msg = 'erreur lors de l\'ajout de l\'image';
                     endif;
@@ -86,7 +87,7 @@ class BackendController
                 throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
                 //unlink ($deletedSlide->getImage_path());
-                header('Location:/p5/taekwondo/addImage');
+                header('Location:'.$this->rootPath.'addImage');
             endif;
         else:
             $this->msg='Aucun identifiant d\'image envoyé';
@@ -217,7 +218,7 @@ class BackendController
                 else:
                     $hashChecked=password_verify($_POST['password'],$admin->password());
                     if($hashChecked):
-                        header('Location:/p5/taekwondo/admin');
+                        header('Location:'.$this->rootPath.'admin');
                         $_SESSION['login']=$admin->login();
                         $_SESSION['id']=$admin->id();
                         $_SESSION['user_name']=$admin->admin_name();
@@ -241,7 +242,7 @@ class BackendController
      */
     public function unplug(){
         session_destroy();
-        header('Location:/p5/taekwondo/login');
+        header('Location:'.$this->rootPath.'login');
     }
     /**
      * Add a new category
@@ -253,7 +254,7 @@ class BackendController
                 'category_name'=>$_POST['category']
             ));
             $newCategory=$this->filesManager->addCategory($category);
-            header('Location:/p5/taekwondo/createCategory');
+            header('Location:'.$this->rootPath.'createCategory');
         endif;
         require('view/createCategoryView.php');
     }
@@ -271,7 +272,7 @@ class BackendController
                 header("HTTP:1.0 404 Not Found");
                 throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
-                header('Location:/p5/taekwondo/createCategory');
+                header('Location:'.$this->rootPath.'createCategory');
             endif;
         else:
             $this->msg='Aucun identifiant de catégorie envoyé';
@@ -332,7 +333,7 @@ class BackendController
                 header("HTTP:1.0 404 Not Found");
                 throw new \Exception('Erreur veuillez contacter votre developpeur!');
             else:
-                header('Location:/p5/taekwondo/allEvents');
+                header('Location:'.$this->rootPath.'allEvents');
             endif;
         else :
             $this->msg='Aucun identifiant de billet envoyé';
@@ -347,7 +348,7 @@ class BackendController
             $event = $this->eventsManager->getEvent($_GET['id']);
             if($event === false){
                 header("HTTP:1.0 404 Not Found");
-                header('Location:/p5/taekwondo/errorView');
+                header('Location:'.$this->rootPath.'errorView');
             }
             else{
                 require('view/updateEventView.php');
@@ -397,7 +398,7 @@ class BackendController
                 require('view/updateEventView.php');
             }
             else {
-                header('Location:/p5/taekwondo/allEvents');
+                header('Location:'.$this->rootPath.'allEvents');
             }
         }
         else{

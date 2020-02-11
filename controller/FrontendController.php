@@ -101,10 +101,6 @@ class FrontendController
             require('view/errorView.php');
             exit;
         endif;
-        /*if($currentPage === '1'):
-            header('Location:/p5/taekwondo/events');
-            exit;
-        endif;*/
         $perPage= 3;
         $start =$perPage*($currentPage-1);
         $pages = ceil($count /$perPage);

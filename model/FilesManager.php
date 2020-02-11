@@ -2,6 +2,11 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class FilesManager
+ * class building a CRUD for all the entities related to the files (FileAdherent, FileAdmin and Category)
+ */
+
 class FilesManager extends Manager 
 {
     /**

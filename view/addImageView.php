@@ -28,7 +28,7 @@
   <div class="jumbotron row text-center">
     <h2 class="font-weight-light text-center mb-5 col-lg-12">Actions sur les images du slider</h2>
 
-    <div class="row text-center text-lg-left">
+    <div class="row text-center text-lg-left" id="gallery">
       <?php 
       foreach($slides as $slide):?>
       <div class="col-lg-3 col-md-4 col-6 text-center">

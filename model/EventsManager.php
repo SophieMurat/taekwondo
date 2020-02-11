@@ -2,6 +2,11 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class EventManager
+ * class building a CRUD for the entity Event
+ */
+
 class EventsManager extends Manager
 {
     /**

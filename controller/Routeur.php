@@ -4,7 +4,9 @@ namespace taekwondo\controller;
 
 use taekwondo\controller\FrontendController;
 use taekwondo\controller\BackendController;
-
+/**
+ * Class handling routing pages
+ */
 
 class Routeur {
 

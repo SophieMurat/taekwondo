@@ -2,6 +2,11 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class SliderManager
+ * class building a CRUD for the entity Slide
+ */
+
 class SliderManager extends Manager 
 {
     /**

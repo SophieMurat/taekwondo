@@ -2,6 +2,11 @@
 
 namespace taekwondo\model;
 
+/**
+ * Class AdminManager
+ * class creating and reading for the entity Admin
+ */
+
 class AdminManager extends Manager
 {
     /**
