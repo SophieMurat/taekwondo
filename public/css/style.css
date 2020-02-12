@@ -34,6 +34,9 @@ button #confirm .inactive{
 #file_responsive, #events_responsive{
     display:none;
 }
+#error-message{
+    display: none; 
+}
 /*--Media queries--*/
 @media screen and (max-width:1024px){
     .carousel-item{

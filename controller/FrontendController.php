@@ -14,6 +14,7 @@ use taekwondo\model\FileAdherent;
 class FrontendController
 {
     public $msg= "";
+    public $msgOk= "";
     private $sliderManager;
     private $filesManager;
     private $eventsManager;
@@ -66,7 +67,7 @@ class FrontendController
                             'adherent_file_name'=>$newName
                         ));
                         $uploadedFile=$this->filesManager->uploadAdherentFile($file,$finalPath,$_POST['category']);
-                        $this->msg =' Le fichier a bien été chargé';;
+                        $this->msgOk=' Le fichier a bien été chargé';;
                     else :
                         $this->msg= 'Une erreur est survenue lors de l\'envoi du fichier';
                     endif;

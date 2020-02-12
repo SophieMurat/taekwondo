@@ -21,6 +21,7 @@ class BackendController
 {
     public $msg= "";
     public $error=false;
+    public $validate=false;
     public $rootPath="/p5/taekwondo/";
     private $sliderManager;
     private $filesManager;
@@ -192,7 +193,7 @@ class BackendController
                         'password'=> $hash_pwd, 
                         'login'=>$_POST['login']));
                     $this->adminsManager->setAdmin($newAdmin);
-                    $this->error=true;
+                    $this->validate=true;
                     $this->msg='Le nouveau compte a bien été ajouté!';
                 endif;
             else :
@@ -370,7 +371,7 @@ class BackendController
                 throw new \Exception('Erreur veuillez contacter votre developpeur!');
             }
             else{
-                require('view/EventView.php');
+                require('view/eventView.php');
             }
         }
         else {

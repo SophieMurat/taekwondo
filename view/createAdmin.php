@@ -37,6 +37,9 @@
         <?php if ($this->error): ?>
         <p class="alert alert-danger" id="createAccountError"><?php echo $this->msg ?></p>
         <?php endif ?>
+        <?php if ($this->validate): ?>
+        <p class="alert alert-success" id="createAccountError"><?php echo $this->msg ?></p>
+        <?php endif ?>
       </div>
     </div>
 </div>

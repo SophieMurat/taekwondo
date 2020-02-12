@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <input type="text" name="zipcode" class="form-control" placeholder="Code postal" id="zipcode">
-                        <div style="display: none; color: #f55;" id="error-message"></div>
+                        <div class="text-danger" id="error-message"></div>
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="city" id="city"></select>
@@ -54,6 +54,7 @@
                     </div>
                     <div class="form-group">
                         <h5 class="text-center text-danger" id="adherentFile"><?php echo $this->msg; ?></h5>
+                        <h5 class="text-center text-success" id="adherentFile"><?php echo $this->msgOk; ?></h5>
                     </div>
                 </form>
             </div>
