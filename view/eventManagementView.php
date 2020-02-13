@@ -22,6 +22,9 @@
             </div>
         </div>
     </div>
+    <div class=" d-flex justify-content-center mt-5">
+        <a class="btn btn-success mb-2" href="admin" role="button">Retour accueil admin</a>
+    </div>  
 </div>
 <?php $content = ob_get_clean(); ?>
 

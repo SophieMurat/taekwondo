@@ -2,7 +2,7 @@
 <h1 class="mt-5 text-center">Gestion des catégories</h1>
 <div class="container">
   <div class="row jumbotron justify-content-around">
-    <div class="col-lg-4 bg-dark rounded px-4">
+    <div class="col-lg-4 bg-dark rounded px-4 mb-2">
     <h4 class="text-center text-light p-1">Ajouter une nouvelle catégorie</h4>
     <form action="createCategory" method="post">
       <div class="form-group">
@@ -28,8 +28,9 @@
         <?php endforeach;?>
     </div>
   </div>
-  <div class="row justify-content-center">
-      <a class="btn btn-success" href="addInscriptionFileChoice" role="button">Retour à la gestion des fichiers</a>
+  <div class="row justify-content-around">
+      <a class="btn btn-success mb-2" href="addInscriptionFileChoice" role="button">Retour à la gestion des fichiers</a>
+      <a class="btn btn-success mb-2" href="admin" role="button">Retour accueil admin</a>
   </div>
 </div>
 

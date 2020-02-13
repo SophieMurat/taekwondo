@@ -26,13 +26,17 @@
             <?php if ($this->error): ?>
             <p class="alert alert-danger" id="createError"><?php echo $this->msg ?></p>
             <?php endif ?>
+            <?php if ($this->validate): ?>
+            <p class="alert alert-success" id="createError"><?php echo $this->msg ?></p>
+            <?php endif ?>
         </div>
       </div>
     </div>
 </article>
-<div class="row justify-content-center">
-      <a class="btn btn-success" href="eventManagement" role="button">Retour à la gestion des évènements</a>
-  </div>
+<div class="row justify-content-around">
+    <a class="btn btn-success mb-2" href="eventManagement" role="button">Retour à la gestion des évènements</a>
+    <a class="btn btn-success mb-2" href="admin" role="button">Retour accueil admin</a>
+</div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

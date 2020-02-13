@@ -32,6 +32,12 @@ button #confirm .inactive{
 .carousel-item{
     max-height: 600px !important;
 }
+.carousel-indicators li{
+    background-color: #343a40;
+}
+.carousel-control-next, .carousel-control-prev{
+    filter: invert(100%);
+}
 #file_responsive, #events_responsive{
     display:none;
 }

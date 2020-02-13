@@ -32,7 +32,7 @@
     <div class="carousel-item <?php echo $actives ?>">
       <img class="d-block w-100" src="<?php echo $row->getImage_path(); ?>" alt="taekwondo">
       <div class="carousel-caption d-none d-md-block">
-        <h4><?php echo $row->getImage_title()?></h4>
+        <h4 class="text-light bg-dark"><?php echo $row->getImage_title()?></h4>
       </div>
     </div>
     <?php $count++; 

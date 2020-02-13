@@ -83,10 +83,13 @@
     ?>
         </tbody>
     </table>
-    <div class="col-lg-4">
+    <div class="col-lg-12 d-flex justify-content-center mt-3">
         <a class="btn btn-success" href="createCategory" role="button">Gestion des catégories</a>
     </div>
     </div>
+    </div>
+    <div class="col-lg-12 d-flex justify-content-center mb-2">
+        <a class="btn btn-success" href="admin" role="button">Retour accueil admin</a>
     </div>
 </div>
 

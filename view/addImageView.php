@@ -39,6 +39,9 @@
       <?php endforeach?>
     </div>
   </div>
+  <div class="col-lg-12 d-flex justify-content-center mb-2">
+        <a class="btn btn-success" href="admin" role="button">Retour accueil admin</a>
+  </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>

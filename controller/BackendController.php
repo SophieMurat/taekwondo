@@ -307,7 +307,7 @@ class BackendController
                 $this->error=true;
                 $this->msg='Impossible d\'ajouter l\'évènement!';
             else:
-                $this->error=true;
+                $this->validate=true;
                 $this->msg='L\'évènement a bien été créé';
             endif;
         else:
