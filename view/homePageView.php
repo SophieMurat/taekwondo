@@ -84,7 +84,7 @@
     </div>
     <div class="col-lg-6">
       <h2 class="col-lg-12">Cours Jeune 2 (4ans)</h2>
-      <p class="col-lg-12"><i class="fas fa-map-marker-alt"></i><span class="ml-1">Lieu: dojo Les Amonts<span class="ml-1"></p>
+      <p class="col-lg-12"><i class="fas fa-map-marker-alt"></i><span class="ml-1">Lieu: dojo Les Amonts</span></p>
       <p class="col-lg-12" id="enfant5"><i class="far fa-clock"></i><span class="ml-1">Horaires: 10h25 à 11h20 samedi</span></p>
     </div>
   </div>

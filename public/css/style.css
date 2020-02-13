@@ -17,6 +17,7 @@ h1,h2{
 }
 p{
     font-size: 1.5rem;
+    overflow-wrap: break-word;
 }
 button #confirm .inactive{
     display: none !important;

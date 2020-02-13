@@ -10,7 +10,7 @@
             <h2 class="post-title">
                 <?php echo htmlspecialchars($event->getTitle()) ?>
             </h2>
-            <p class="post-subtitle">
+            <p class="post-subtitle events">
                 <?php echo $event->getContent() ?>
                 <br/>
             </p>
