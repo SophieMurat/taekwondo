@@ -14,13 +14,13 @@
             $inscriptionFiles->closeCursor();
             ?>
             </ul>
-            <h2 class="col-lg-12">Renvoyez les fiches remplies et signées via le formulaire ci-dessous</h2>
+            <h2 class="col-lg-12">Renvoyez une fiche ou un document via le formulaire ci-dessous</h2>
     </div>
 </div>
 <div class="container jumbotron">
         <div class="row justify-content-center">
             <div class="col-lg-4 bg-dark rounded px-4">
-            <h4 class="text-center text-light p-1">Renvoyer la fiche d'inscription signée</h4>
+            <h4 class="text-center text-light p-1">Renvoyer un document</h4>
                 <form action="sendInscriptionFile#adherentFile" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control p-1" placeholder="Nom de l'inscrit" pattern="[a-zA-ZÀ-ÿ-]+" title="Lettres et '-' acceptés">

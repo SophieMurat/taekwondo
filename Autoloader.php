@@ -2,7 +2,7 @@
 
 namespace taekwondo;
 /**
- * Class Autoloader that allow the automatic charging of all the classes
+ * Class Autoloader that allows the automatic charging of all the classes
  */
 
 class Autoloader {
@@ -19,7 +19,7 @@ class Autoloader {
     static function autoload($class){
         if(strpos($class,__NAMESPACE__.'\\')===0):// strpos cherche la position de la première occurence dans une chaîne   
         $class= str_replace(__NAMESPACE__.'\\','',$class);
-        $class= str_replace('\\','/',$class);
+        $class= str_replace('\\','/',$class);// ligne pas nécessaire dans ce projet(quand on a besoin d'ecrire un chemin en html)
         require __DIR__.'/' . $class . '.php';
         endif;
     }

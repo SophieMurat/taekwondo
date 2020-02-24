@@ -23,7 +23,7 @@ class Event extends Entity
         return $this->title;
     }
     public function getPosted_date(){
-        return $this->post_date;
+        return $this->posted_date;
     }
     public function getContent(){
         return $this->content;
